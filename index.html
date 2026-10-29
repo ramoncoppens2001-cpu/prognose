@@ -546,6 +546,61 @@ details.uitklap[open] summary::before{transform:rotate(90deg)}
 .stdoek iframe{border:0;display:block;background:#E7E2DD}
 .stdoek .laden{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12.5px;color:var(--zacht);pointer-events:none}
 
+/* =====================================================================
+   FOUTZOEKER: inklapbaar terminalvenster op de Data-stap
+   ===================================================================== */
+.foutzoeker{margin-top:14px;overflow:hidden}
+.fzkop{display:flex;align-items:center;gap:13px;padding:13px 16px;cursor:pointer;border-radius:var(--r-groot);outline:0}
+.fzkop:focus-visible{box-shadow:inset 0 0 0 2px var(--accent)}
+.fzkop:hover .fzknop{background:var(--accent-zacht);color:var(--accent)}
+.fzik{width:34px;height:34px;border-radius:10px;background:#1C1D29;color:var(--geel);display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.fzik svg{display:block}
+.fztekst{min-width:0}
+.fzkop h2{margin:0;font-size:14.5px;font-weight:600}
+.fzsub{font-size:12.5px;color:var(--zacht);line-height:1.45;margin-top:1px}
+.fzkop .rechtsin{margin-left:auto;display:flex;gap:8px;align-items:center;flex:0 0 auto}
+.fzchips{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.fzknop{display:inline-block}
+.fzbalk{display:flex;align-items:center;gap:8px 14px;padding:0 16px 10px;flex-wrap:wrap}
+.fzbalk .rest{margin-left:auto;display:flex;gap:8px}
+.fzvink{display:inline-flex;align-items:center;gap:7px;font-size:12.5px;color:var(--zacht);cursor:pointer;user-select:none}
+.fzvink input{accent-color:var(--navy);width:15px;height:15px;margin:0}
+.term{margin:0 16px;border-radius:12px;background:#1C1D29;color:#D7D8DE;overflow:hidden;box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.term .tkop{display:flex;align-items:center;gap:7px;padding:9px 12px;background:#25273A;border-bottom:1px solid rgba(255,255,255,.06);font:500 11.5px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;color:#92939C}
+.term .tkop i{width:10px;height:10px;border-radius:50%;background:#3B3D52;display:block;flex:0 0 auto}
+.term .tkop i:first-child{background:var(--geel)}
+.term .tkop span{margin-left:6px;white-space:nowrap}
+.term .tkop .trechts{margin-left:auto;overflow:hidden;text-overflow:ellipsis}
+.term pre{margin:0;padding:10px 14px 14px;max-height:480px;overflow:auto;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;white-space:pre-wrap;word-break:break-word;tab-size:4;outline:0}
+.term pre:focus-visible{box-shadow:inset 0 0 0 2px rgba(255,223,0,.5)}
+.term .tk{color:var(--geel);font-weight:600}
+.term .t-titel{color:#fff;font-weight:600}
+.term .t-ok{color:#7BD88F}
+.term .t-let{color:#FFB35C}
+.term .t-fout{color:#FF8A80}
+.term .t-info{color:#D7D8DE}
+.term .t-sub{color:#A9ABB8}
+.term .t-zacht{color:#7D7F8F}
+.term pre::-webkit-scrollbar{width:10px;height:10px}
+.term pre::-webkit-scrollbar-thumb{background:#3B3D52;border-radius:8px;border:2px solid #1C1D29}
+.term pre::-webkit-scrollbar-track{background:transparent}
+.term .tprompt{display:flex;align-items:center;gap:9px;padding:9px 14px;border-top:1px solid rgba(255,255,255,.07);background:#202131;cursor:text}
+.term .tprompt span{color:var(--geel);font:700 14px/1 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.term .tprompt input{flex:1;min-width:0;background:transparent;border:0;outline:0;padding:2px 0;color:#fff;font:12.5px ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;caret-color:var(--geel)}
+.term .tprompt input::placeholder{color:#6B6D80}
+.fznoot{font-size:11.5px;color:var(--flauw);padding:10px 16px 14px;line-height:1.5}
+.fznoot b{color:var(--zacht);font-weight:600}
+.paneel.kapot{padding:18px 20px;box-shadow:var(--schaduw),inset 4px 0 0 var(--signaal);margin-bottom:14px}
+.paneel.kapot h2{margin:0 0 4px;font-size:15px;font-weight:600}
+.paneel.kapot p{margin:0 0 12px;color:var(--zacht);font-size:13px;max-width:640px}
+@media(max-width:620px){
+  .fzkop{flex-wrap:wrap}
+  .fzkop .rechtsin{margin-left:47px}
+  .fzbalk .rest{margin-left:0;width:100%}
+  .term{margin:0 10px}
+  .term pre{font-size:11px;max-height:400px}
+}
+
 /* ---------- smal scherm ---------- */
 @media(max-width:1180px){.dataonder{grid-template-columns:minmax(0,1fr)}.bronniet{display:none}.vakdeel .dcijfers{grid-template-columns:repeat(3,108px);gap:4px 12px}}
 @media(max-width:1100px){.kopcontext{display:none}}
@@ -677,6 +732,7 @@ details.uitklap[open] summary::before{transform:rotate(90deg)}
 <script>
 const VOORBEELD = {"bestand":"Prognose_2026_voorbeeld.xlsx","tabs":[{"naam":"Lees mij","rijen":[]},{"naam":"Check","rijen":[]},{"naam":"Data (Power BI)","rijen":[]},{"naam":"Old","rijen":[[null,null,"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[2026,"Forecast",200000,300000,500000,450000,250000,450000,350000,300000,250000,500000,250000,1200000,5000000],[null,"Invoiced",92300,237450,493209.32,352794.4,177832,488735,428350,0,0,0,0,0,2270670.72,0.454134144],[null,"Nog te factureren",0,0,0,0,0,0,0,363119.5,387365,23725,0,237685,1011894.5,0.2023789],[null,"I+F",92300,237450,493209.32,352794.4,177832,488735,428350,363119.5,387365,23725,0,237685,3282565.22,0.656513044],[],[null,"Cumulative","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[null,"Forecast",200000,500000,1000000,1450000,1700000,2150000,2500000,2800000,3050000,3550000,3800000,5000000,5000000],[null,"Invoiced",92300,329750,822959.32,1175753.72,1353585.72,1842320.72,2270670.72,2270670.72,2270670.72,2270670.72,2270670.72,2270670.72,2270670.72],[null,"Secured",0,0,0,0,0,0,0,363119.5,750484.5,774209.5,774209.5,1011894.5,1011894.5],[null,"I+F",92300,329750,822959.32,1175753.72,1353585.72,1842320.72,2270670.72,2633790.22,3021155.22,3044880.22,3044880.22,3282565.22,3282565.22],[],[null,null,"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[2025,"Forecast",200000,300000,500000,450000,250000,450000,350000,300000,250000,500000,250000,1200000,5000000],[null,"Invoiced",210200,203800,203960,449404.19,265450,374824,381330.7,208769.63,523935,306189,263829.83,1592371.6,4984063.95,0.99681279],[null,"Secured",0,0,0,0,0,0,0,0,0,0,0,-18897,-18897,0],[null,"I+F",210200,203800,203960,449404.19,265450,374824,381330.7,208769.63,523935,306189,263829.83,1592371.6,4984063.95,0.99681279],[],[null,"Cumulative","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[null,"Forecast",200000,500000,1000000,1450000,1700000,2150000,2500000,2800000,3050000,3550000,3800000,5000000,5000000],[null,"Invoiced",210200,414000,617960,1067364.19,1332814.19,1707638.19,2088968.89,2297738.52,2821673.52,3127862.52,3391692.35,4984063.95,4984063.95],[null,"Secured",0,0,0,0,0,0,0,0,0,0,0,-18897],[null,"I+F",210200,414000,617960,1067364.19,1332814.19,1707638.19,2088968.89,2297738.52,2821673.52,3127862.52,3391692.35,4965166.95,0.99303339],[],[null,null,"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[2024,"Forecast",200000,250000,300000,250000,250000,300000,250000,200000,300000,400000,400000,900000,4000000],[null,"Invoiced",37115,229890.64,404054,503454.39,252445,408701.64,371550,270310.34,243293.22,513659.94,195107.61,1301005.63,4730587.41,1.1826468525],[null,"Secured",null,null,null,null,null,null,null,null,null,null,null,null,null,0],[null,"I+F",37115,229890.64,404054,503454.39,252445,408701.64,371550,270310.34,243293.22,513659.94,195107.61,1301005.63,4730587.41,1.1826468525],[],[null,"Cumulative","Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Okt","Nov","Dec","FY"],[null,"Forecast",200000,450000,750000,1000000,1250000,1550000,1800000,2000000,2300000,2700000,3100000,4000000,4000000],[null,"Invoiced",37115,267005.64,671059.64,1174514.03,1426959.03,1835660.67,2207210.67,2477521.01,2720814.23,3234474.17,3429581.78,4730587.41,4730587.41],[null,"Secured",0,0,0,0,0,0,0,0,0,0,0,0],[null,"I+F",37115,267005.64,671059.64,1174514.03,1426959.03,1835660.67,2207210.67,2477521.01,2720814.23,3234474.17,3429581.78,4730587.41,4730587.41],[],[],[null,2024,2025,2026,null,"Banking ","Residential ","International","Specials ","Other","Totaal"],["Q1 ",671059.64,617960,822959.32,"Forecast",135850,333350,326562.5,198632,17500,1011894.5],["Q2",1164601.03,1089678.19,1019361.4,"Invoiced",609880,605536,876507.4,208438,5989.32,2306350.72],["Q3",885153.56,1114035.33,1178834.5,"Total",745730,938886,1203069.9,407070,23489.32,3318245.22],["Q4 ",2009773.18,2162390.43,261410,null,0.224736253820325,0.282946538833559,0.362562083341146,0.122676286112453,0.00707883789251718,1],["Totaal",4730587.41,4984063.95,3282565.22],["Q1 ",0.141855457227457,0.123987173158161,0.250706159617447],["Q2",0.24618528928102,0.218632465580623,0.310538049263801],["Q3",0.187112821999414,0.223519469488348,0.359119901964964],["Q4 ",0.424846431492109,0.433860891772867,0.0796358891537881]]},{"naam":"<<<2026>>>","rijen":[["Totalen","519 regels",null,null,null,null,null,"Nog te factureren",1011894.5,"Gefactureerd",2270670.72],["FLOW ID","Client","One off / recurring","Property (city, adress) / Portfolio name","Type","Purpose","Team","Projected month","Secured Fee","Instruction status","Invoiced amount","Invoice nr.","Invoice date","Opportunity number","Client in Dynamics?"],[1234,"Client 1","One off","Adres 1, Plaats 1","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002704",46234.0,"OPPO027952","Y"],[1235,"Client 1","One off","Adres 2, Plaats 2","Industrial","Loan security - new/refi","Banking","Aug",2250,"Running",null,null,null,"OPPO027952","Y"],[1236,"Client 1","One off","Adres 1, Plaats 2","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002673",46213.0,"OPPO027952","Y"],[1237,"Client 1","One off","Adres 2, Plaats 3","Retail","Loan security - new/refi","Residential",null,0,"Accrual - YE",0,"INV03002255",46029.0,"OPPO027952","Y"],[1238,"Client 1","One off","Adres 1, Plaats 3","Hotel","Loan security - new/refi","Specials",null,0,"Accrual - YE",0,"INV03002262",46034.0,"OPPO027952","Y"],[1239,"Client 1","One off","Adres 2, Plaats 4","Other","Loan security - new/refi","International",null,null,"Accrual - YE",0,"INV03002296",46049.0,"OPPO027952","Y"],[1240,"Client 1","One off","Adres 1, Plaats 4","Residential","Loan security - new/refi","International",null,0,"Invoiced",2250,"INV03002299",46050.0,"OPPO027952","Y"],[1241,"Client 1","One off","Adres 2, Plaats 5","Office","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002303",46052.0,"OPPO027952","Y"],[1242,"Client 1","One off","Adres 1, Plaats 5","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002306",46055.0,"OPPO027952","Y"],[1243,"Client 1","One off","Adres 2, Plaats 6","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002308",46056.0,"OPPO027952","Y"],[1244,"Client 1","One off","Adres 1, Plaats 6","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002311",46057.0,"OPPO027952","Y"],[1245,"Client 1","One off","Adres 2, Plaats 7","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",3750,"INV03002312",46057.0,"OPPO027952","Y"],[1246,"Client 1","One off","Adres 1, Plaats 7","Other","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002354",46069.0,"OPPO027952","Y"],[1247,"Client 1","One off","Adres 2, Plaats 8","Other","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002355",46069.0,"OPPO027952","Y"],[1248,"Client 1","One off","Adres 1, Plaats 8","Other","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002356",46069.0,"OPPO027952","Y"],[1249,"Client 1","One off","Adres 2, Plaats 9","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",18200,"INV03002368",46076.0,"OPPO027952","Y"],[1250,"Client 1","One off","Adres 1, Plaats 9","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",22500,"INV03002369",46079.0,"OPPO027952","Y"],[1251,"Client 1","One off","Adres 2, Plaats 10","Residential","Loan security - new/refi","Specials",null,0,"Invoiced",5000,"INV03002374",46080.0,"OPPO027952","Y"],[1252,"Client 1","One off","Adres 1, Plaats 10","Industrial","Loan security - new/refi","International",null,0,"Invoiced",3000,"INV03002379",46086.0,"OPPO027952","Y"],[1253,"Client 1","One off","Adres 2, Plaats 11","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2500,"INV03002385",46090.0,"OPPO027952","Y"],[1254,"Client 1","One off","Adres 1, Plaats 11","Other","Loan security - new/refi","Banking",null,0,"Invoiced",2500,"INV03002393",46092.0,"OPPO027952","Y"],[1255,"Client 1","One off","Adres 2, Plaats 12","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002405",46097.0,"OPPO027952","Y"],[1256,"Client 1","One off","Adres 1, Plaats 12","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",21500,"INV03002406",46097.0,"OPPO027952","Y"],[1257,"Client 1","One off","Adres 2, Plaats 13","Office","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002422",46105.0,"OPPO027952","Y"],[1258,"Client 1","One off","Adres 1, Plaats 13","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002430",46106.0,"OPPO027952","Y"],[1259,"Client 1","One off","Adres 2, Plaats 14","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",12250,"INV03002459",46112.0,"OPPO027952","Y"],[1260,"Client 1","One off","Adres 1, Plaats 14","Healthcare","Loan security - new/refi","Banking",null,0,"Invoiced",3250,"INV03002460",46112.0,"OPPO027952","Y"],[1261,"Client 1","One off","Adres 2, Plaats 15","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002469",46119.0,"OPPO027952","Y"],[1262,"Client 1","One off","Adres 1, Plaats 15","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",-1500,"CR0300231",46120.0,"OPPO027952","Y"],[1263,"Client 1","One off","Adres 2, Plaats 16","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002491",46122.0,"OPPO027952","Y"],[1264,"Client 1","One off","Adres 1, Plaats 16","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",-1500,"CR0300232",46122.0,"OPPO027952","Y"],[1265,"Client 1","One off","Adres 2, Plaats 17","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002476",46122.0,"OPPO027952","Y"],[1266,"Client 1","One off","Adres 1, Plaats 17","Other","Loan security - new/refi","Specials",null,0,"Invoiced",14500,"INV03002475",46120.0,"OPPO027952","Y"],[1267,"Client 1","One off","Adres 2, Plaats 18","Other","Loan security - new/refi","Residential","Aug",2750,"Running",null,null,null,"OPPO027952","Y"],[1268,"Client 1","One off","Adres 1, Plaats 18","Other","Loan security - new/refi","Residential","Aug",2750,"Running",null,null,null,"OPPO027952","Y"],[1269,"Client 1","One off","Adres 2, Plaats 19","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",40000,"INV03002472",46120.0,"OPPO027952","Y"],[1270,"Client 1","One off","Adres 1, Plaats 19","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2750,"INV03002498",46125.0,"OPPO027952","Y"],[1271,"Client 1","One off","Adres 2, Plaats 20","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",1750,"INV03002504",46128.0,"OPPO027952","Y"],[1272,"Client 1","One off","Adres 1, Plaats 20","Residential","Loan security - new/refi","Residential","Aug",0,"Running",null,null,null,"OPPO027952","Y"],[1273,"Client 1","One off","Adres 2, Plaats 21","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",5500,"INV03002521",46141.0,"OPPO027952","Y"],[1274,"Client 1","One off","Adres 1, Plaats 21","Office","Loan security - new/refi","Banking",null,0,"Invoiced",3250,"INV03002522",46141.0,"OPPO027952","Y"],[1275,"Client 1","One off","Adres 2, Plaats 22","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002513",46135.0,"OPPO027952","Y"],[1276,"Client 1","One off","Adres 1, Plaats 22","Office","Loan security - new/refi","Residential",null,0,"Invoiced",4500,"INV03002564",46161.0,"OPPO027952","Y"],[1277,"Client 1","One off","Adres 2, Plaats 23","Office","Loan security - new/refi","Banking",null,0,"Invoiced",6500,"INV03002645",46202.0,"OPPO027952","Y"],[1278,"Client 1","One off","Adres 1, Plaats 23","Office","Loan security - new/refi","International",null,0,"Invoiced",5000,"INV03002676",46213.0,"OPPO027952","Y"],[1279,"Client 1","One off","Adres 2, Plaats 24","Office","Loan security - new/refi","Residential",null,0,"Invoiced",3250,"INV03002574",46169.0,"OPPO027952","Y"],[1280,"Client 1","One off","Adres 1, Plaats 24","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",2750,"INV03002647",46202.0,"OPPO027952","Y"],[1281,"Client 1","One off","Adres 2, Plaats 25","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",2500,"INV03002655",46204.0,"OPPO027952","Y"],[1282,"Client 1","One off","Adres 1, Plaats 25","Office","Loan security - new/refi","Banking",null,"-","Invoiced",6000,"INV03002694",46223.0,"OPPO027952","Y"],[1283,"Client 1","One off","Adres 2, Plaats 26","Office","Loan security - new/refi","Banking",null,"-","Invoiced",9250,"INV03002707",46234.0,"OPPO027952","Y"],[1284,"Client 1","One off","Adres 1, Plaats 26","Industrial","Loan security - new/refi","Banking",null,"-","Invoiced",1750,"INV03002692",46223.0,"OPPO027952","Y"],[1285,"Client 1","One off","Adres 2, Plaats 27","Retail","Loan security - new/refi","Banking",null,"-","Invoiced",750,"INV03002663",46210.0,"OPPO027952","Y"],[1286,"Client 1","One off","Adres 1, Plaats 27","Office","Loan security - new/refi","Banking",null,"-","Invoiced",5000,"INV03002701",46227.0,"OPPO027952","Y"],[1287,"Client 1","One off","Adres 2, Plaats 28","Mixed","Loan security - new/refi","Banking","Aug",2750,"Running",null,null,null,"OPPO027952","Y"],[1288,"Client 1","One off","Adres 1, Plaats 28","Other","Loan security - new/refi","Specials","Aug",3000,"Running",null,null,null,"OPPO027952","Y"],[1289,"Client 1","One off","Adres 2, Plaats 29","Office","Loan security - new/refi","Banking","Sep",2250,"Running",null,null,null,"OPPO027952","Y"],[1290,"Client 2","Recurring","Adres 1, Plaats 29","Industrial","Accounts","International",null,null,"Invoiced",2500,"INV03002550 + INV03002551",46153.0,"OPPO028967"],[1291,"Client 2","Recurring","Adres 2, Plaats 30","Industrial","Accounts","International","Aug",-250,"Running",null,null,null,"OPPO028967"],[1292,"Client 2","Recurring","Adres 1, Plaats 30","Industrial","Accounts","International",null,0,"Invoiced",7500,"INV03002660",46209.0,"OPPO028967"],[1293,"Client 2","Recurring","Adres 2, Plaats 31","Industrial","Accounts","International","Aug",1250,"Running",null,null,null,"OPPO028967"],[1294,"Client 2","Recurring","Adres 1, Plaats 31","Industrial","Feeshare","International","Aug",-125,"Accrual - FS",null,null,null,"OPPO028967"],[1295,"Client 3","One off","Adres 2, Plaats 32","Other","Accounts","International",null,0,"Invoiced",4500,"INV03002589",46182.0,"OPPO028968"],[1296,"Client 4","One off","Adres 1, Plaats 32","Mixed","Other","Residential","Aug",40000,"Running"],[1297,"Client 5","One off","Adres 2, Plaats 33","Other","Accounts","Specials",null,0,"Invoiced",5000,"INV03002329",46064.0,"OPPO028185","Y"],[1298,"Client 6","Recurring","Adres 1, Plaats 33","Mixed","Other","International",null,0,"Invoiced",8200,"INV03002710",46234.0,"OPPO027951","Y"],[1299,"Client 6","Recurring","Adres 2, Plaats 34","Mixed","Accounts","International",null,0,"Invoiced",0,"INV03002293",46048.0,null,"Y"],[1300,"Client 6","Recurring","Adres 1, Plaats 34","Industrial","Accounts","International",null,0,"Invoiced",4000,"INV03002295",46048.0,"OPPO027951","Y"],[1301,"Client 7","Recurring","Adres 2, Plaats 35","Other","Feeshare","International",null,null,"Invoiced",70,null,46161.0,"OPPO028159"],[1302,"Client 7","Recurring","Adres 1, Plaats 35","Mixed","Accounts","International",null,0,"Invoiced",7050,"INV03002450 + INV03002451 + INV03002452 + INV03002453 + INV03002454 +INV03002455 + INV03002456 + INV03002457 + INV03002458 + INV03002448",46111.0,"OPPO028643","Y"],[1303,"Client 7","Recurring","Adres 2, Plaats 36","Mixed","Accounts","Residential",null,0,"Invoiced",4800,"INV03002463 + INV03002464",46112.0,"OPPO028643","Y"],[1304,"Client 7","Recurring","Adres 1, Plaats 36","Mixed","Accounts","Residential","Aug",2800,"Running",null,null,null,"OPPO028643"],[1305,"Client 7","Recurring","Adres 2, Plaats 37","Mixed","Feeshare","International","Aug",-1185,"Accrual - FS",null,null,null,"OPPO028643"],[1306,"Client 7","Recurring","Adres 1, Plaats 37","Mixed","Feeshare","International","Aug",-1185,"Accrual - FS",null,null,null,"OPPO028643"],[1307,"Client 7","Recurring","Adres 2, Plaats 38","Mixed","Accounts","International",null,null,"Invoiced",7050,"INV03002628 + INV03002627 + INV03002625 +  INV03002624 + INV03002623 + INV03002622 +  INV03002621 +  INV03002620 + INV03002619 ",46196.0,"OPPO028643"],[1308,"Client 7","Recurring","Adres 1, Plaats 38","Mixed","Accounts","Residential",null,0,"Invoiced",4800,"INV03002617 + INV03002618",46196.0,"OPPO028643"],[1309,"Client 7","Recurring","Adres 2, Plaats 39","Mixed","Feeshare","International","Sep",-1185,"Accrual - FS",null,null,null,"OPPO028643"],[1310,"Client 7","Recurring","Adres 1, Plaats 39","Mixed","Accounts","International","Sep",7050,"Running",null,null,null,"OPPO028643"],[1311,"Client 7","Recurring","Adres 2, Plaats 40","Mixed","Accounts","Residential","Sep",4800,"Running",null,null,null,"OPPO028643"],[1312,"Client 7","Recurring","Adres 1, Plaats 40","Mixed","Feeshare","International","Dec",-4070,"Accrual - FS",null,null,null,"OPPO028643"],[1313,"Client 7","Recurring","Adres 2, Plaats 41","Mixed","Accounts","International","Dec",28200,"Running",null,null,null,"OPPO028643"],[1314,"Client 7","Recurring","Adres 1, Plaats 41","Mixed","Accounts","Residential","Dec",12000,"Running",null,null,null,"OPPO028643"],[1315,"Client 8","One off","Adres 2, Plaats 42","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",0,"INV03002386",46090.0,null,"Y"],[1316,"Client 9","One off","Adres 1, Plaats 42","Mixed","Accounts","Residential",null,0,"Invoiced",0,"INV03002256",46031.0,null,"Y"],[1317,"Client 10","One off","Adres 2, Plaats 43","Mixed","Loan security - new/refi","Residential","Sep",41500,"Running",null,null,null,null,"Y"],[1318,"Client 11","One off","Adres 1, Plaats 43","Hotel","Other","Specials","Aug",4000,"Running",null,null,null,null,"Y"],[1319,"Client 12","One off","Adres 2, Plaats 44","Hotel","Accounts","Specials",null,0,"Invoiced",0,"INV03002289",46043.0,null,"Y"],[1320,"Client 12","Recurring","Adres 1, Plaats 44","Hotel","Accounts","Specials",null,0,"Invoiced",5250,"INV03002643",46203.0,"OPPO029334","Y"],[1321,"Client 12","Recurring","Adres 2, Plaats 45","Hotel","Accounts","Specials","Dec",6500,"Running",null,null,null,"OPPO029335"],[1322,"Client 13","One off","Adres 1, Plaats 45","Hotel","Accounts","Specials",null,0,"Invoiced",9500,"INV03002290",46043.0,"OPPO028000","N"],[1323,"Client 14","Recurring","Adres 2, Plaats 46","Industrial","Accounts","International",null,null,"Invoiced",25000,"INV03002699",46226.0,"OPPO028969"],[1324,"Client 14","Recurring","Adres 1, Plaats 46","Industrial","Feeshare","International","Aug",-1250,"Accrual - FS",null,null,null,"OPPO028969"],[1325,"Client 14","One off","Adres 2, Plaats 47","Industrial","Accounts","International",null,null,"Invoiced",90000,"INV03002699",46226.0,"OPPO028969"],[1326,"Client 14","Recurring","Adres 1, Plaats 47","Industrial","Feeshare","International","Aug",-4500,"Accrual - FS",null,null,null,"OPPO028969"],[1327,"Client 14","One off","Adres 2, Plaats 48","Industrial","Loan security - new/refi","International",null,0,"Invoiced",6000,"INV03002682",46217.0,"OPPO028969"],[1328,"Client 14","One off","Adres 1, Plaats 48","Industrial","Loan security - new/refi","International",null,0,"Invoiced",-6000,"CR0300249",46219.0,"OPPO028969"],[1329,"Client 14","One off","Adres 2, Plaats 49","Industrial","Loan security - new/refi","International",null,0,"Invoiced",9000,"INV03002688",46219.0,"OPPO028969"],[1330,"Client 14","Recurring","Adres 1, Plaats 49","Industrial","Feeshare","International","Aug",-2000,"Accrual - FS",null,null,null,"OPPO028969"],[1331,"Client 14","One off","Adres 2, Plaats 50","Industrial","Other","International",null,0,"Invoiced",45500,"INV03002709",46234.0,"OPPO028969"],[1332,"Client 14","One off","Adres 1, Plaats 50","Industrial","Feeshare","International","Aug",-2275,"Accrual - FS",null,null,null,"OPPO028969"],[1333,"Client 15","One off","Adres 2, Plaats 51","Office","Loan security - new/refi","International","Aug",6000,"Running",null,null,null,null,"Y"],[1334,"Cleint 16","One off","Adres 1, Plaats 51","Office","Loan security - new/refi","International",null,null,"Invoiced",7500,"INV03002382",46087.0,"OPPO028454"],[1335,"Client 17","One off","Adres 2, Plaats 52","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",0,"INV03002259",46031.0],[1336,"Client 17","One off","Adres 1, Plaats 52","Industrial","Loan security - new/refi","International",null,0,"Invoiced",8000,"INV03002425",46105.0,"OPPO027959"],[1337,"Client 17","One off","Adres 2, Plaats 53","Office","Loan security - new/refi","International",null,0,"Invoiced",25000,"INV03002684",46218.0,"OPPO027959"],[1338,"Client 17","One off","Adres 1, Plaats 53","Office","Loan security - new/refi","Other","Aug",17500,"Running",null,null,null,"OPPO027959"],[1339,"Client 17","One off","Adres 2, Plaats 54","Other","Loan security - new/refi","Specials","Aug",7500,"Running",null,null,null,null,"Y"],[1340,"Client 17","One off","Adres 1, Plaats 54","Office","Loan security - new/refi","International",null,0,"Invoiced",4500,"INV03002686",46218.0,"OPPO027959"],[1341,"Client 17","One off","Adres 2, Plaats 55","Residential","Loan security - new/refi","Residential","Sep",19000,"Running",null,null,null,null,"Y"],[1342,"Client 18","One off","Adres 1, Plaats 55","Office","Accounts","Specials",null,0,"Invoiced",7500,"INV03002565",46162.0,"OPPO028971"],[1343,"Client 19","Recurring","Adres 2, Plaats 56","Industrial","Accounts","International",null,0,"Invoiced",2500,"INV03002473",46120.0,"OPPO027950"],[1344,"Client 19","Recurring","Adres 1, Plaats 56","Industrial","Feeshare","International","Aug",-250,"Accrual - FS",null,null,null,"OPPO027950"],[1345,"Client 19","Recurring","Adres 2, Plaats 57","Industrial","Accounts","International",null,"-","Invoiced",2500,"INV03002651",46204.0,"OPPO027950"],[1346,"Client 19","Recurring","Adres 1, Plaats 57","Industrial","Feeshare","International","Aug",-250,"Accrual - FS",null,null,null,"OPPO027950"],[1347,"Client 20","Recurring","Adres 2, Plaats 58","Other","Other","International",null,0,"Invoiced",700,"INV03002507",46129.0,"OPPO028822","Y"],[1348,"Client 20","Recurring","Adres 1, Plaats 58","Other","Other","International",null,0,"Invoiced",-700,"CR0300242",46176.0,"OPPO028822","Y"],[1349,"Client 20","Recurring","Adres 2, Plaats 59","Other","Other","International",null,0,"Invoiced",350,"INV03002583",46176.0,"OPPO028822","Y"],[1350,"Client 20","Recurring","Adres 1, Plaats 59","Other","Other","International",null,0,"Running",null,null,null,"OPPO028822","Y"],[1351,"Client 21","Recurring","Adres 2, Plaats 60","Other","Feeshare","International",null,null,"Invoiced",35,null,46161.0,"OPPO028159"],[1352,"Client 22","One off","Adres 1, Plaats 60","Residential","Acquisition / disposal","Residential",null,0,"Accrual - YE",0,"INV03002331",46064.0,"OPPO027949","Y"],[1353,"Client 22","One off","Adres 2, Plaats 61","Residential","Acquisition / disposal","Residential",null,0,"Accrual - YE",0,"INV03002332",46064.0,"OPPO027949","Y"],[1354,"Client 22","Recurring","Adres 1, Plaats 61","Healthcare","Accounts","Residential",null,0,"Invoiced",0,"INV03002376",46083.0,null,"Y"],[1355,"Client 22","Recurring","Adres 2, Plaats 62","Office","Accounts","Residential",null,0,"Invoiced",0,"INV03002377",46083.0,null,"Y"],[1356,"Client 22","Recurring","Adres 1, Plaats 62","Office","Accounts","International",null,0,"Invoiced",13244.4,"INV03002508",46134.0,"OPPO027949","Y"],[1357,"Client 22","Recurring","Adres 2, Plaats 63","Residential","Accounts","Residential",null,0,"Invoiced",29800,"INV03002552",46154.0,"OPPO027949","Y"],[1358,"Client 22","Recurring","Adres 1, Plaats 63","Healthcare","Accounts","Residential","Okt",0,"Running",null,null,null,"OPPO027949","Y"],[1359,"Client 22","Recurring","Adres 2, Plaats 64","Healthcare","Accounts","Residential","Dec",0,"Running",null,null,null,"OPPO027949","Y"],[1360,"Client 23","One off","Adres 1, Plaats 64","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",5500,"INV03002581",46171.0,"OPPO029200"],[1361,"Client 24","One off","Adres 2, Plaats 65","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3500,"INV03002387",46090.0,"OPPO028412","Y"],[1362,"Client 25","One off","Adres 1, Plaats 65","Mixed","Accounts","Banking",null,0,"Invoiced",10000,"INV03002494 + INV03002493",46125.0,"OPPO028788","Y"],[1363,"Client 26","One off","Adres 2, Plaats 66","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",4500,"INV03002505",46128.0,"OPPO028821","Y"],[1364,"Client 26","One off","Adres 1, Plaats 66","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",-4500,"CR0300235",46134.0,"OPPO028821","Y"],[1365,"Client 26","One off","Adres 2, Plaats 67","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",4500,"INV03002509",46134.0,"OPPO028821","Y"],[1366,"Client 26","One off","Adres 1, Plaats 67","Mixed","Loan security - new/refi","Residential","Aug",27500,"Running"],[1367,"Client 27","One off","Adres 2, Plaats 68","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",0,"INV03002362",46070.0,"OPPO028963","Y"],[1368,"Client 28","Recurring","Adres 1, Plaats 68","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",89000,"INV03002609",46195.0,"OPPO028963","Y"],[1369,"Client 29","One off","Adres 2, Plaats 69","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",-2250,"CR0300227",46087.0,"OPPO028442","Y"],[1370,"Client 29","One off","Adres 1, Plaats 69","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",2250,"INV03002380",46087.0,"OPPO028442","Y"],[1371,"Client 29","One off","Adres 2, Plaats 70","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",1000,"INV03002381",46087.0,"OPPO028442","Y"],[1372,"Client 30","One off","Adres 1, Plaats 70","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",3250,"INV03002587",46181.0,"OPPO028526"],[1373,"Client 30","Recurring","Adres 2, Plaats 71","Mixed","Acquisition / disposal","Banking",null,0,"Invoiced",23000,"INV03002429 + INV03002428",46106.0,"OPPO028526","Y"],[1374,"Client 30","Recurring","Adres 1, Plaats 71","Mixed","Acquisition / disposal","Banking",null,0,"Invoiced",11500,"INV03002431 + INV03002432 + INV03002433 + INV03002434 + INV03002435",46107.0,"OPPO028526","Y"],[1375,"Client 30","Recurring","Adres 2, Plaats 72","Mixed","Accounts","International",null,0,"Invoiced",6500,"INV03002482 + INV03002481 + INV03002480 + INV03002479 + INV03002478 + INV03002477 ",46122.0,"OPPO028526","Y"],[1376,"Client 30","Recurring","Adres 1, Plaats 72","Mixed","Accounts","International",null,null,"Invoiced",6500,"INV03002637 + INV03002638 + INV03002639 +INV03002640 + INV03002641 +INV03002642",46203.0,"OPPO028526"],[1377,"Client 30","Recurring","Adres 2, Plaats 73","Mixed","Accounts","International","Sep",6500,"Running",null,null,null,"OPPO028526"],[1378,"Client 30","Recurring","Adres 1, Plaats 73","Mixed","Accounts","International","Dec",15750,"Running",null,null,null,"OPPO028526"],[1379,"Client 30","Recurring","Adres 2, Plaats 74","Mixed","Acquisition / disposal","Banking",null,0,"Invoiced",8000,"INV03002599 + INV03002598",46184.0,"OPPO028526"],[1380,"Client 30","Recurring","Adres 1, Plaats 74","Mixed","Acquisition / disposal","Banking","Sep",8000,"Running",null,null,null,"OPPO028526"],[1381,"Client 30","Recurring","Adres 2, Plaats 75","Mixed","Acquisition / disposal","Banking","Dec",8000,"Running",null,null,null,"OPPO028526"],[1382,"Client 30","Recurring","Adres 1, Plaats 75","Mixed","Acquisition / disposal","Banking",null,0,"Invoiced",2500,"INV03002595 + INV03002600 + INV03002601 + INV03002602 + INV03002603",46184.0,"OPPO028526"],[1383,"Client 30","Recurring","Adres 2, Plaats 76","Mixed","Acquisition / disposal","Banking","Sep",2500,"Running",null,null,null,"OPPO028526"],[1384,"Client 30","Recurring","Adres 1, Plaats 76","Mixed","Acquisition / disposal","Banking","Dec",2500,"Running",null,null,null,"OPPO028526"],[1385,"Client 31","One off","Adres 2, Plaats 77","Office","Accounts","International",null,0,"Invoiced",45000,"INV03002510",46134.0,"OPPO028526","Y"],[1386,"Client 31","One off","Adres 1, Plaats 77","Office","Accounts","International",null,0,"Invoiced",14750,"INV03002634",46203.0,"OPPO028526"],[1387,"Client 31","One off","Adres 2, Plaats 78","Office","Accounts","International","Sep",14750,"Running",null,null,null,"OPPO028526"],[1388,"Client 31","One off","Adres 1, Plaats 78","Office","Accounts","International","Dec",14750,"Running",null,null,null,"OPPO028526"],[1389,"Client 32","Recurring","Adres 2, Plaats 79","Other","Loan security - new/refi","International",null,0,"Invoiced",-14100,"CR0300228",46108.0,"OPPO028634"],[1390,"Client 32","Recurring","Adres 1, Plaats 79","Other","Loan security - new/refi","International",null,0,"Invoiced",14100,"INV03002436",46107.0,"OPPO028634"],[1391,"Client 32","Recurring","Adres 2, Plaats 80","Other","Loan security - new/refi","International",null,0,"Invoiced",14100,"INV03002438 + INV03002439 + INV03002440 + INV03002441 + INV03002442",46108.0,"OPPO028634"],[1392,"Client 32","Recurring","Adres 1, Plaats 80","Other","Feeshare","International","Aug",-705,"Accrual - FS",null,null,null,"OPPO028634"],[1393,"Client 32","One off","Adres 2, Plaats 81","Mixed","Loan security - new/refi","International",null,0,"Invoiced",48450,"INV03002606",46190.0,"OPPO028634"],[1394,"Client 32","One off","Adres 1, Plaats 81","Mixed","Loan security - new/refi","International",null,0,"Invoiced",-48450,"CR0300247",46204.0,"OPPO028634"],[1395,"Client 32","One off","Adres 2, Plaats 82","Mixed","Loan security - new/refi","International",null,0,"Invoiced",48450,"INV03002650",46204.0,"OPPO028634"],[1396,"Client 32","One off","Adres 1, Plaats 82","Industrial","Loan security - new/refi","International","Sep",55000,"Running",null,null,null,"OPPO028634"],[1397,"Client 32","One off","Adres 2, Plaats 83","Mixed","Feeshare","International","Aug",-2422.5,"Accrual - FS"],[1398,"Client 33","One off","Adres 1, Plaats 83","Industrial","Accounts","International",null,0,"Invoiced",0,"CR0300229",46108.0,null,"Y"],[1399,"Client 33","One off","Adres 2, Plaats 84","Industrial","Accounts","International",null,0,"Invoiced",0,"INV03002307",46055.0,null,"Y"],[1400,"Client 33","One off","Adres 1, Plaats 84","Industrial","Accounts","International",null,0,"Invoiced",0,"INV03002444",46108.0,null,"Y"],[1401,"Client 33","Recurring","Adres 2, Plaats 85","Other","Feeshare","International",null,null,"Invoiced",528,null,46161.0,"OPPO028159"],[1402,"Client 34","One off","Adres 1, Plaats 85","Hotel","Other","Specials",null,0,"Invoiced",8500,"INV03002604",46190.0,"OPPO029342"],[1403,"Client 34","One off","Adres 2, Plaats 86","Hotel","Other","Specials",null,0,"Invoiced",-8500,"CR0300245",46190.0,"OPPO029342"],[1404,"Client 34","One off","Adres 1, Plaats 86","Hotel","Other","Specials",null,0,"Invoiced",8500,"INV03002607",46190.0,"OPPO029342"],[1405,"Client 35","One off","Adres 2, Plaats 87","Office","Loan security - new/refi","International",null,0,"Invoiced",62700,"INV03002426",46105.0,"OPPO028604"],[1406,"Client 36","One off","Adres 1, Plaats 87","Office","Loan security - new/refi","International",null,0,"Invoiced",1500,"INV03002461",46112.0,"OPPO028676"],[1407,"Client 37","One off","Adres 2, Plaats 88","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2750,"INV03002596",46183.0,"OPPO028748 "],[1408,"Client 37","One off","Adres 1, Plaats 88","Other","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002488",46122.0,"OPPO028748 ","Y"],[1409,"Client 37","One off","Adres 2, Plaats 89","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",2750,"INV03002597",46183.0,"OPPO028748 ","Y"],[1410,"Client 37","One off","Adres 1, Plaats 89","Residential","Loan security - new/refi","Banking","Aug",5800,"Running",null,null,null,"OPPO028748 "],[1411,"Client 37","One off","Adres 2, Plaats 90","Mixed","Loan security - new/refi","Residential","Sep",2750,"Running",null,null,null,"OPPO028748 "],[1412,{"e":"#N/A"},"One off","Adres 1, Plaats 90","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",1750,"INV03002525",46141.0,"OPPO027958","Y"],[1413,{"e":"#N/A"},"One off","Adres 2, Plaats 91","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",45000,"INV03002610 + INV03002611",46196.0,"OPPO027958"],[1414,{"e":"#N/A"},"One off","Adres 1, Plaats 91","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",1000,"INV03002555",46153.0,"OPPO027958"],[1415,"Client 39","One off","Adres 2, Plaats 92","Office","Accounts","International",null,0,"Invoiced",4400,"INV03002532",46142.0,"OPPO028926 ","Y"],[1416,"Client 40","One off","Adres 1, Plaats 92","Office","Loan security - new/refi","Banking",null,0,"Invoiced",14500,"INV03002557",46154.0,"OPPO029034","Y"],[1417,"Client 40","One off","Adres 2, Plaats 93","Office","Loan security - new/refi","Banking",null,0,"Invoiced",-14500,"CR0300241 -",46168.0,"OPPO029034","Y"],[1418,"Client 40","One off","Adres 1, Plaats 93","Office","Loan security - new/refi","Banking",null,0,"Invoiced",14500,"INV03002579 + INV03002580",46169.0,"OPPO029034","Y"],[1419,"Client 40","Recurring","Adres 2, Plaats 94","Industrial","Loan security - new/refi","International","Aug",5000,"Running",null,null,null,null,"Y"],[1420,"Client 41","One off","Adres 1, Plaats 94","Industrial","Loan security - new/refi","International",null,0,"Invoiced",2500,"INV03002409",46098.0,"OPPO028544","Y"],[1421,"Client 42","One off","Adres 2, Plaats 95","Healthcare","Loan security - new/refi","International",null,0,"Invoiced",3500,"INV03002567",46164.0,"OPPO028975"],[1422,"Client 42","One off","Adres 1, Plaats 95","Healthcare","Loan security - new/refi","International",null,0,"Invoiced",-3500,"CR0300248",46213.0,"OPPO028975"],[1423,"Client 42","One off","Adres 2, Plaats 96","Healthcare","Loan security - new/refi","International",null,0,"Invoiced",3500,"INV03002675",46212.0,"OPPO028975"],[1424,{"e":"#N/A"},"One off","Adres 1, Plaats 96","Residential","Accounts","Residential","Aug",2500,"Running",null,null,null,null,"Y"],[1425,"Client 44","One off","Adres 2, Plaats 97","Residential","Accounts","Residential",null,0,"Invoiced",0,"CR0300223 + CR0300224 + CR0300225",46070.0,null,"Y"],[1426,"Client 44","One off","Adres 1, Plaats 97","Residential","Accounts","Residential",null,0,"Invoiced",-1350,"CR0300224  + INV03002361",46070.0,null,"Y"],[1427,"Client 44","One off","Adres 2, Plaats 98","Residential","Accounts","Residential",null,0,"Invoiced",0,"INV03002353 + INV03002352 + INV03002351 + INV03002350 +\nINV03002349 + INV03002348 + INV03002347 + INV03002346 +\nINV03002345 + INV03002344 + INV03002343 + INV03002342 +\nINV03002341 + INV03002340 + INV03002339 + INV03002338 +\nINV03002337 + INV03002336",46065.0,null,"Y"],[1428,"Client 44","One off","Adres 1, Plaats 98","Residential","Accounts","Residential",null,0,"Invoiced",0,"INV03002358 + INV03002360 +INV03002361",46070.0,null,"Y"],[1429,"Client 44","Recurring","Adres 2, Plaats 99","Residential","Accounts","Residential","Aug",3900,"Running"],[1430,"Client 44","Recurring","Adres 1, Plaats 99","Residential","Accounts","Residential","Dec",null,"Running"],[1431,"Client 45","Recurring","Adres 2, Plaats 100","Other","Other","Specials",null,0,"Invoiced",2250,"INV03002661",46209.0,"OPPO029340"],[1432,"Client 45","Recurring","Adres 1, Plaats 100","Other","Other","Specials","Dec",4500,"Running",null,null,null,"OPPO029340"],[1433,"Client 46","One off","Adres 2, Plaats 101","Other","Other","Other",null,null,"Invoiced",1308.32,"INV03002388",46091.0,"OPPO028443"],[1434,"Client 47","One off","Adres 1, Plaats 101","Other","Other","Other",null,null,"Invoiced",681,"INV03002546",46153.0,"OPPO028443"],[1435,"Client 48","Recurring","Adres 2, Plaats 102","Hotel","Accounts","Specials",null,0,"Invoiced",8000,"INV03002592",46183.0,"OPPO029357"],[1436,"Client 48","Recurring","Adres 1, Plaats 102","Hotel","Accounts","Specials",null,0,"Invoiced",8000,"INV03002658",46209.0,"OPPO029357"],[1437,"Client 48","Recurring","Adres 2, Plaats 103","Hotel","Accounts","Specials","Okt",8000,"Running",null,null,null,"OPPO029357"],[1438,"Client 48","Recurring","Adres 1, Plaats 103","Hotel","Accounts","Specials","Dec",8000,"Running",null,null,null,"OPPO029357"],[1439,"Client 49","One off","Adres 2, Plaats 104","Office","Other","International",null,0,"Invoiced",0,"INV03002330",46064.0,null,"Y"],[1440,"Client 50","One off","Adres 1, Plaats 104","Other","Accounts","International",null,0,"Invoiced",0,"INV03002363",46070.0,null,"Y"],[1441,"Client 51","One off","Adres 2, Plaats 105","Office","Loan security - new/refi","Residential","Aug",9500,"Running"],[1442,"Client 52","One off","Adres 1, Plaats 105","Office","Other","Specials",null,0,"Invoiced",-2750,"CR0300219",46057.0],[1443,"Client 52","One off","Adres 2, Plaats 106","Office","Other","Specials",null,0,"Invoiced",2750,"INV03002257",46031.0],[1444,"Client 53","One off","Adres 1, Plaats 106","Hotel","Other","Specials",null,0,"Invoiced",20000,"INV03002608",46192.0,"OPPO028966"],[1445,"Client 54","One off","Adres 2, Plaats 107","Hotel","Other","Specials",null,0,"Invoiced",1250,"INV03002523",46141.0,"OPPO028906"],[1446,"Client 54","One off","Adres 1, Plaats 107","Hotel","Other","Specials",null,0,"Invoiced",2250,"INV03002571",46168.0,"OPPO029182"],[1447,"Client 55","One off","Adres 2, Plaats 108","Office","Other","Specials",null,0,"Invoiced",7500,"INV03002541",46147.0,"OPPO028941 ","Y"],[1448,"Client 55","One off","Adres 1, Plaats 108","Office","Other","Specials",null,0,"Invoiced",-7500,"CR0300239",46148.0,"OPPO028941 ","Y"],[1449,"Client 55","One off","Adres 2, Plaats 109","Office","Other","Specials",null,0,"Invoiced",5250,"INV03002545",46148.0,"OPPO028941 ","Y"],[1450,"Client 56","One off","Adres 1, Plaats 109","Other","Other","Residential",null,0,"Invoiced",9000,"INV03002427",46105.0,"OPPO028609 ","Y"],[1451,"Client 57","One off","Adres 2, Plaats 110","Hotel","Accounts","Banking",null,0,"Invoiced",0,"INV03002267",46038.0],[1452,"Client 58","One off","Adres 1, Plaats 110","Residential","Other","Residential",null,0,"Invoiced",-2000,"INV03002484",46122.0],[1453,"Client 58","One off","Adres 2, Plaats 111","Residential","Other","Residential",null,0,"Invoiced",0,"INV03002484 ",46122.0],[1454,"Client 58","One off","Adres 1, Plaats 111","Residential","Other","Residential",null,0,"Invoiced",-8000,"CR0300233",46125.0],[1455,"Client 58","One off","Adres 2, Plaats 112","Residential","Other","Residential",null,0,"Invoiced",8000," INV03002492",46122.0],[1456,"Client 59","Recurring","Adres 1, Plaats 112","Mixed","Accounts","Residential","Sep",58800,"Running",null,null,null,null,"Y"],[1457,"Client 60","One off","Adres 2, Plaats 113","Industrial","Loan sales","International",null,0,"Invoiced",2500,"INV03002678",46216.0,"OPPO028976"],[1458,"Client 61","One off","Adres 1, Plaats 113","Other","Other","Specials",null,"-","Invoiced",3500,"INV03002677",46213.0,"OPPO029611"],[1459,"Client 61","One off","Adres 2, Plaats 114","Other","Other","Specials","Aug",-1500,"Accrual - FS",null,null,null,"OPPO029611"],[1460,"Client 62","One off","Adres 1, Plaats 114","Mixed","Loan security - new/refi","Residential","Sep",15000,"Running",null,null,null,"OPPO029334","Y"],[1461,"Client 63","One off","Adres 2, Plaats 115","Office","Loan security - new/refi","Banking",null,0,"Invoiced",3250,"INV03002392",46092.0,"OPPO027960","Y"],[1462,"Client 63","One off","Adres 1, Plaats 115","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",36000,"INV03002407",46097.0,"OPPO027960","Y"],[1463,"Client 63","One off","Adres 2, Plaats 116","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",500,"INV03002443",46108.0,"OPPO027960","Y"],[1464,"Client 63","One off","Adres 1, Plaats 116","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",3500,"INV03002474",46120.0,"OPPO027960","Y"],[1465,"Client 63","One off","Adres 2, Plaats 117","Office","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002394",46093.0,"OPPO027960","Y"],[1466,"Client 63","One off","Adres 1, Plaats 117","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",null,null,null,"OPPO027960","Y"],[1467,"Client 63","One off","Adres 2, Plaats 118","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",9000,"INV03002495",46125.0,"OPPO027960"],[1468,"Client 63","One off","Adres 1, Plaats 118","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002687",46218.0,"OPPO027960"],[1469,"Client 63","One off","Adres 2, Plaats 119","Other","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002530",46142.0,"OPPO027960","Y"],[1470,"Client 63","One off","Adres 1, Plaats 119","Other","Other","Residential",null,null,"Invoiced",3000,"INV03002529",46142.0,"OPPO027960","Y"],[1471,"Client 63","One off","Adres 2, Plaats 120","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3500,"INV03002644",46202.0,"OPPO027960"],[1472,"Client 63","One off","Adres 1, Plaats 120","Residential","Loan security - new/refi","Residential","Okt",2000,"Running",null,null,null,"OPPO027960"],[1473,"Client 64","One off","Adres 2, Plaats 121","Mixed","Accounts","Residential",null,0,"Invoiced",0,"INV03002271",46038.0],[1474,"Client 64","One off","Adres 1, Plaats 121","Residential","Accounts","Residential",null,0,"Invoiced","-","INV03002397"],[1475,"Client 64","One off","Adres 2, Plaats 122","Residential","Accounts","Residential",null,0,"Invoiced","-","INV03002399"],[1476,"Client 64","One off","Adres 1, Plaats 122","Residential","Accounts","Residential",null,0,"Invoiced","-","INV03002400 + INV03002398"],[1477,"Client 64","One off","Adres 2, Plaats 123","Residential","Accounts","Residential",null,0,"Invoiced","-","INV03002401"],[1478,"Client 64","One off","Adres 1, Plaats 123","Residential","Accounts","Residential",null,0,"Invoiced","-","INV03002402"],[1479,"Client 64","Recurring","Adres 2, Plaats 124","Mixed","Accounts","Residential","Dec",4000,"Running",null,null,null,"OPPO028964"],[1480,"Client 64","Recurring","Adres 1, Plaats 124","Mixed","Accounts","Residential","Dec",11250,"Running",null,null,null,"OPPO028964"],[1481,"Client 64","Recurring","Adres 2, Plaats 125","Mixed","Accounts","Residential","Dec",19500,"Running",null,null,null,"OPPO028964"],[1482,"Client 64","Recurring","Adres 1, Plaats 125","Mixed","Accounts","Residential","Dec",19500,"Running",null,null,null,"OPPO028964"],[1483,"Client 64","Recurring","Adres 2, Plaats 126","Mixed","Accounts","Residential","Dec",14250,"Running",null,null,null,"OPPO028964"],[1484,"Client 65","One off","Adres 1, Plaats 126","Industrial","Loan security - monitoring","International",null,0,"Invoiced",5000,"INV03002605",46190.0,"OPPO028978","Y"],[1485,"Client 66","One off","Adres 2, Plaats 127","Residential","Loan security - new/refi","Residential","Aug",2500,"Running",null,null,null,"OPPO028970","Y"],[1486,"Client 67","One off","Adres 1, Plaats 127","Office","Loan security - new/refi","Residential","Aug",2500,"Running",null,null,null,null,"Y"],[1487,"Client 68","One off","Adres 2, Plaats 128","Industrial","Loan security - new/refi","International","Aug",5000,"Running",null,null,null,null,"Y"],[1488,"Client 69","One off","Adres 1, Plaats 128","Other","Other","Specials",null,0,"Invoiced",11250,"INV03002364",46071.0,"OPPO027965","Y"],[1489,"Client 69","One off","Adres 2, Plaats 129","Mixed","Loan security - new/refi","Specials",null,0,"Invoiced",3000,"INV03002556",46154.0,"OPPO028981"],[1490,"Client 70","One off","Adres 1, Plaats 129","Office","Loan security - new/refi","International",null,0,"Invoiced",-10000,"CR0300230",46112.0,"OPPO028626"],[1491,"Client 70","One off","Adres 2, Plaats 130","Office","Loan security - new/refi","International",null,0,"Invoiced",10000,"INV03002437",46107.0,"OPPO028626"],[1492,"Client 70","One off","Adres 1, Plaats 130","Office","Loan security - new/refi","International",null,0,"Invoiced",10000,"INV03002449",46112.0,"OPPO028626"],[1493,"Client 70","One off","Adres 2, Plaats 131","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",4000,"INV03002679",46217.0,"OPPO028626"],[1494,"Client 71","One off","Adres 1, Plaats 131","Mixed","Loan security - new/refi","Banking","Aug",40000,"Running",null,null,null,"OPPO027945"],[1495,"Client 71","One off","Adres 2, Plaats 132","Office","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002657",46209.0,"OPPO027945"],[1496,"Client 71","One off","Adres 1, Plaats 132","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",-5500,"CR0300220",46059.0,"OPPO027945","Y"],[1497,"Client 71","One off","Adres 2, Plaats 133","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",-24750,"CR0300222  + INVCR0300221",46064.0,"OPPO027945","Y"],[1498,"Client 71","One off","Adres 1, Plaats 133","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002265",46036.0,"OPPO027945","Y"],[1499,"Client 71","One off","Adres 2, Plaats 134","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",1800,"INV03002294",46048.0,"OPPO027945","Y"],[1500,"Client 71","One off","Adres 1, Plaats 134","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",24000,"INV03002302",46051.0,"OPPO027945","Y"],[1501,"Client 71","One off","Adres 2, Plaats 135","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",5500,"INV03002304",46052.0,"OPPO027945","Y"],[1502,"Client 71","One off","Adres 1, Plaats 135","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",1600,"INV03002310",46057.0,"OPPO027945","Y"],[1503,"Client 71","One off","Adres 2, Plaats 136","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",4500,"INV03002313",46057.0,"OPPO027945","Y"],[1504,"Client 71","One off","Adres 1, Plaats 136","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002314",46057.0,"OPPO027945","Y"],[1505,"Client 71","One off","Adres 2, Plaats 137","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",5500,"INV03002323 + INV03002324",46059.0,"OPPO027945","Y"],[1506,"Client 71","One off","Adres 1, Plaats 137","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",24750,"INV03002326 + INV03002325",46062.0,"OPPO027945","Y"],[1507,"Client 71","One off","Adres 2, Plaats 138","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",24750,"INV03002333 + INV03002334",46064.0,"OPPO027945","Y"],[1508,"Client 71","One off","Adres 1, Plaats 138","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002511",46134.0,"OPPO027945","Y"],[1509,"Client 71","One off","Adres 2, Plaats 139","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002512",46134.0,"OPPO027945","Y"],[1510,"Client 71","One off","Adres 1, Plaats 139","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",4500,"INV03002367",46076.0,"OPPO027945","Y"],[1511,"Client 71","One off","Adres 2, Plaats 140","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",10000,"INV03002372",46080.0,"OPPO027945","Y"],[1512,"Client 71","One off","Adres 1, Plaats 140","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",129551,"INV03002384",46090.0,"OPPO027945","Y"],[1513,"Client 71","One off","Adres 2, Plaats 141","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002389",46091.0,"OPPO027945","Y"],[1514,"Client 71","One off","Adres 1, Plaats 141","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002528",46141.0,"OPPO027945","Y"],[1515,"Client 71","One off","Adres 2, Plaats 142","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",-3000,"CR0300237",46147.0,"OPPO027945","Y"],[1516,"Client 71","One off","Adres 1, Plaats 142","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002537",46147.0,"OPPO027945","Y"],[1517,"Client 71","One off","Adres 2, Plaats 143","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",6500,"INV03002520",46141.0,"OPPO027945","Y"],[1518,"Client 71","One off","Adres 1, Plaats 143","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",7000,"INV03002578",46169.0,"OPPO027945","Y"],[1519,"Client 71","One off","Adres 2, Plaats 144","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",9250,"INV03002572",46169.0,"OPPO027945","Y"],[1520,"Client 71","One off","Adres 1, Plaats 144","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002695",46223.0,"OPPO027945","Y"],[1521,"Client 71","One off","Adres 2, Plaats 145","Healthcare","Accounts","Banking",null,"-","Invoiced",2000,"INV03002670 + INV03002671",46212.0,"OPPO027945","Y"],[1522,"Client 71","One off","Adres 1, Plaats 145","Other","Loan security - new/refi","International","Sep",39500,"Running",null,null,null,null,"Y"],[1523,"Client 71","One off","Adres 2, Plaats 146",null,"Loan security - new/refi","Residential","Aug",5500,"Running",null,null,null,null,"Y"],[1524,"Client 71","One off","Adres 1, Plaats 146","Office","Loan security - new/refi","Banking",null,0,"Invoiced",1750,"INV03002375",46080.0,"OPPO027945","Y"],[1525,"Client 71","One off","Adres 2, Plaats 147","Office","Loan security - new/refi","International",null,0,"Invoiced",5500,"INV03002378",46084.0,"OPPO027945","Y"],[1526,"Client 72","One off","Adres 1, Plaats 147","Office","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002383",46090.0,"OPPO027945","Y"],[1527,"Client 72","One off","Adres 2, Plaats 148","Office","Loan security - new/refi","Banking",null,0,"Invoiced",5000,"INV03002391",46092.0,"OPPO027945","Y"],[1528,"Client 73","One off","Adres 1, Plaats 148","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002408",46098.0,"OPPO027945","Y"],[1529,"Client 74","One off","Adres 2, Plaats 149","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",41500,"INV03002421",46105.0,"OPPO027945","Y"],[1530,"Client 74","One off","Adres 1, Plaats 149","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",8000,"INV03002445 + INV03002446 + INV03002447",46108.0,"OPPO027945","Y"],[1531,"Client 74","One off","Adres 2, Plaats 150","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002558",46155.0,"OPPO027945","Y"],[1532,"Client 75","One off","Adres 1, Plaats 150","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002470",46119.0,"OPPO027945","Y"],[1533,"Client 75","One off","Adres 2, Plaats 151","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002531",46142.0,"OPPO027945","Y"],[1534,"Client 75","One off","Adres 1, Plaats 151","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",17500,"INV03002518",46141.0,"OPPO027945","Y"],[1535,"Client 75","One off","Adres 2, Plaats 152","Other","Loan security - new/refi","Banking",null,null,"Invoiced",3500,"INV03002526",46141.0,"OPPO027945","Y"],[1536,"Client 75","One off","Adres 1, Plaats 152","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002485",46122.0,"OPPO027945","Y"],[1537,"Client 75","One off","Adres 2, Plaats 153","Industrial","Loan security - new/refi","Banking",null,null,"Invoiced",10000,"INV03002549",46152.0,"OPPO027945","Y"],[1538,"Client 75","One off","Adres 1, Plaats 153","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002568",46164.0,"OPPO027945"],[1539,"Client 75","One off","Adres 2, Plaats 154","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002616",46196.0,"OPPO027945"],[1540,"Client 75","One off","Adres 1, Plaats 154","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",10500,"INV03002672",46212.0,"OPPO027945"],[1541,"Client 75","One off","Adres 2, Plaats 155","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3500,"INV03002615",46196.0,"OPPO027945"],[1542,"Client 75","One off","Adres 1, Plaats 155","Industrial","Loan security - new/refi","Banking",null,"-","Invoiced",6500,"INV03002666",46211.0,"OPPO027945","Y"],[1543,"Client 76","One off","Adres 2, Plaats 156","Mixed","Loan security - new/refi","Banking",null,"-","Invoiced",3750,"INV03002689",46219.0,"OPPO027945","Y"],[1544,"Client 76","One off","Adres 1, Plaats 156","Industrial","Loan security - new/refi","Banking","Aug",4500,"Running",null,null,null,"OPPO027945","Y"],[1545,"Client 76","One off","Adres 2, Plaats 157","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",1750,"INV03002697",46224.0,"OPPO027945","Y"],[1546,"Client 76","One off","Adres 1, Plaats 157","Retail","Loan security - new/refi","Banking","Okt",750,"Running",null,null,null,"OPPO027945","Y"],[1547,"Client 76","One off","Adres 2, Plaats 158","Retail","Loan security - new/refi","Banking","Dec",750,"Running",null,null,null,"OPPO027945","Y"],[1548,"Client 76","One off","Adres 1, Plaats 158","Office","Loan security - new/refi","International",null,"-","Invoiced",4500,"INV03002698",46226.0,"OPPO027945","Y"],[1549,"Client 76","One off","Adres 2, Plaats 159","Office","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002700",46226.0,"OPPO027945","Y"],[1550,"Client 76","One off","Adres 1, Plaats 159","Office","Loan security - new/refi","Banking","Sep",5000,"Running",null,null,null,"OPPO027945","Y"],[1551,"Client 76","One off","Adres 2, Plaats 160","Healthcare","Loan security - new/refi","Banking","Aug",3750,"Running",null,null,null,"OPPO027945","Y"],[1552,"Client 76","One off","Adres 1, Plaats 160","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002691",46219.0,"OPPO027945","Y"],[1553,"Client 77","One off","Adres 2, Plaats 161","Mixed","Loan security - new/refi","Banking","Aug",5800,"Running",null,null,null,"OPPO027945","Y"],[1554,"Client 77","One off","Adres 1, Plaats 161","Mixed","Loan security - new/refi","Banking","Aug",6500,"Running",null,null,null,"OPPO027945","Y"],[1555,"Client 78","One off","Adres 2, Plaats 162","Industrial","Loan security - new/refi","International",null,0,"Invoiced",6000,"INV03002328",46063.0,"OPPO027945","Y"],[1556,"Client 79","Recurring","Adres 1, Plaats 162","Office","Loan security - new/refi","International","Aug",9500,"Running",null,null,null,null,"Y"],[1557,"Client 79","One off","Adres 2, Plaats 163","Industrial","Other","Banking",null,null,"Invoiced",5000,"INV03002664",46209.0,"OPPO029562","Y"],[1558,"Client 79","One off","Adres 1, Plaats 163","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3500,"INV03002497",46125.0,"OPPO028795","Y"],[1559,"Client 80","One off","Adres 2, Plaats 164","Residential","Loan security - new/refi","Residential","Aug",2500,"Running",null,null,null,"OPPO028795","Y"],[1560,"Client 81","One off","Adres 1, Plaats 164","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",6000,"INV03002656",46206.0,"OPPO028795","Y"],[1561,"Client 82","Recurring","Adres 2, Plaats 165","Other","Feeshare","International",null,null,"Invoiced",100,null,46161.0,"OPPO028159"],[1562,"Client 82","Recurring","Adres 1, Plaats 165","Mixed","Accounts","International",null,0,"Invoiced",6000,"INV03002468",46119.0,"OPPO028700","Y"],[1563,"Client 82","Recurring","Adres 2, Plaats 166","Mixed","Accounts","International",null,0,"Invoiced",-6000,"CR0300234",46127.0,"OPPO028700","Y"],[1564,"Client 83","Recurring","Adres 1, Plaats 166","Mixed","Accounts","International",null,0,"Invoiced",6000,"INV03002500 + INV03002499",46127.0,"OPPO028700","Y"],[1565,"Client 84","Recurring","Adres 2, Plaats 167","Mixed","Accounts","International",null,0,"Invoiced",1000,"INV03002668",46211.0,"OPPO028700","Y"],[1566,"Client 84","Recurring","Adres 1, Plaats 167","Mixed","Accounts","International","Okt",6000,"Running",null,null,null,"OPPO028700","Y"],[1567,"Client 84","Recurring","Adres 2, Plaats 168","Mixed","Accounts","International","Dec",1000,"Running",null,null,null,"OPPO028700","Y"],[1568,"Client 84","Recurring","Adres 1, Plaats 168","Mixed","Feeshare","International","Aug",-600,"Accrual - FS",null,null,null,"OPPO028700","Y"],[1569,"Client 84","Recurring","Adres 2, Plaats 169","Mixed","Feeshare","International","Aug",-100,"Accrual - FS",null,null,null,"OPPO028795","Y"],[1570,"Client 84","Recurring","Adres 1, Plaats 169","Mixed","Feeshare","International","Sep",-600,"Accrual - FS",null,null,null,"OPPO028700","Y"],[1571,"Client 85","Recurring","Adres 2, Plaats 170","Mixed","Feeshare","International","Dec",-100,"Accrual - FS",null,null,null,"OPPO028700","Y"],[1572,"Client 86","Recurring","Adres 1, Plaats 170","Industrial","Accounts","International",null,0,"Invoiced",0,"INV03002298",46049.0,null,"Y"],[1573,"Client 86","Recurring","Adres 2, Plaats 171","Office","Accounts","International",null,0,"Invoiced",2600,"INV03002390",46092.0,"OPPO028476","Y"],[1574,"Client 86","Recurring","Adres 1, Plaats 171","Industrial","Feeshare","International","Aug",-410,"Accrual - FS",null,null,null,"OPPO028476","Y"],[1575,"Client 86","Recurring","Adres 2, Plaats 172","Industrial","Feeshare","International","Aug",-410,"Accrual - FS",null,null,null,"OPPO028476","Y"],[1576,"Client 87","Recurring","Adres 1, Plaats 172","Industrial","Accounts","International",null,0,"Invoiced",2400,"INV03002702",46230.0,"OPPO028476","Y"],[1577,"Client 87","Recurring","Adres 2, Plaats 173","Industrial","Feeshare","International","Aug",-390,"Accrual - FS",null,null,null,"OPPO028476","Y"],[1578,"Client 88","Recurring","Adres 1, Plaats 173","Retail","Other","International",null,0,"Invoiced",2600,"INV03002517",46141.0,"OPPO028476 ","Y"],[1579,"Client 89","Recurring","Adres 2, Plaats 174","Retail","Other","International",null,0,"Invoiced",-2600,"CR0300238",46147.0,"OPPO028476 ","Y"],[1580,"Client 89","Recurring","Adres 1, Plaats 174","Retail","Other","International",null,0,"Invoiced",2600,"INV03002540",46147.0,"OPPO028476 ","Y"],[1581,"Client 89","One off","Adres 2, Plaats 175","Other","Feeshare","International",null,null,"Invoiced",150,null,46161.0,"OPPO028159"],[1582,"Client 89","One off","Adres 1, Plaats 175","Office","Loan security - new/refi","Specials","Aug",6000,"Running",null,null,null,null,"Y"],[1583,"Client 89","One off","Adres 2, Plaats 176","Retail","Loan security - new/refi","International","Aug",9500,"Running",null,null,null,null,"Y"],[1584,"Client 89","One off","Adres 1, Plaats 176","Other","Accounts","Specials",null,0,"Invoiced",0,"INV03002286",46043.0,null,"Y"],[1585,"Client 89","One off","Adres 2, Plaats 177","Other","Other","Residential",null,0,"Invoiced",9500,"INV03002582",46176.0,"OPPO029253","Y"],[1586,"Client 89","One off","Adres 1, Plaats 177","Other","Other","Residential",null,0,"Invoiced",-9500,"CR0300243",46178.0,"OPPO029253","Y"],[1587,"Client 89","One off","Adres 2, Plaats 178","Other","Other","Residential",null,0,"Invoiced",9550,"INV03002584",46178.0,"OPPO029253","Y"],[1588,"Client 89","One off","Adres 1, Plaats 178","Hotel","Accounts","Specials","Aug",42632,"Running"],[1589,"Client 90","One off","Adres 2, Plaats 179","Office","Loan security - new/refi","International","Sep",8500,"Running",null,null,null,null,"Y"],[1590,"Client 90","One off","Adres 1, Plaats 179","Mixed","Loan security - new/refi","International",null,0,"Invoiced",90000,"INV03002646 + INV03002648",46203.0,"OPPO028982"],[1591,"Client 90","One off","Adres 2, Plaats 180","Mixed","Feeshare","International","Aug",-4500,"Accrual - FS",null,null,null,"OPPO028982"],[1592,"Client 90","One off","Adres 1, Plaats 180","Industrial","Loan security - new/refi","International","Aug",4250,"Running"],[1593,"Client 90","One off","Adres 2, Plaats 181","Office","Loan security - new/refi","International","Sep",54500,"Running",null,null,null,null,"Y"],[1594,"Client 91","One off","Adres 1, Plaats 181","Industrial","Loan security - new/refi","International",null,0,"Invoiced",5500,"INV03002318",46057.0,"OPPO028107"],[1595,"Client 92","One off","Adres 2, Plaats 182","Industrial","Loan security - new/refi","International",null,0,"Invoiced",2500,"INV03002423",46105.0,"OPPO028107"],[1596,"Client 92","One off","Adres 1, Plaats 182","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",8500,"INV03002674",46213.0,"OPPO028107"],[1597,"Client 93","One off","Adres 2, Plaats 183","Office","Loan security - new/refi","International",null,0,"Invoiced",4500,"INV03002685",46218.0,"OPPO028107","Y"],[1598,"Client 94","One off","Adres 1, Plaats 183","Office","Loan security - new/refi","International",null,0,"Invoiced",-4500,"CR0300250",46219.0,"OPPO028107","Y"],[1599,"Client 95","One off","Adres 2, Plaats 184","Office","Loan security - new/refi","International",null,0,"Invoiced",4000,"INV03002690",46219.0,"OPPO028107","Y"],[1600,"Client 96","One off","Adres 1, Plaats 184","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",5000,"INV03002554",46154.0,"OPPO028107"],[1601,"Cleint 97","One off","Adres 2, Plaats 185","Other","Other","Specials","Aug",2000,"Running",null,null,null,null,"Y"],[1602,"Client 98","One off","Adres 1, Plaats 185","Hotel","Other","Specials",null,0,"Invoiced",1250,"INV03002586",46178.0,"OPPO029278"],[1603,"Client 98","One off","Adres 2, Plaats 186","Hotel","Other","Specials",null,0,"Invoiced",-1250,"CR0300246",46196.0,"OPPO029278"],[1604,"Client 98","One off","Adres 1, Plaats 186","Hotel","Other","Specials",null,0,"Invoiced",1250,"INV03002635",46197.0,"OPPO029278"],[1605,"Client 98","One off","Adres 2, Plaats 187","Other","Other","Other",null,0,"Invoiced",2500,"INV04000127",46048.0,"OPPO027819 "],[1606,"Client 98","One off","Adres 1, Plaats 187","Other","Other","Other",null,0,"Accrual - YE",-2500,"INV04000127",46054.0,"OPPO028159"],[1607,"Client 98","One off","Adres 2, Plaats 188","Office","Other","International",null,0,"Invoiced",3500,"INV03002575",46168.0,"OPPO029203"],[1608,"Client 99","One off","Adres 1, Plaats 188","Hotel","Loan security - new/refi","Residential",null,0,"Running",null,null,null,"OPPO027944"],[1609,"Client 99","One off","Adres 2, Plaats 189","Office","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002594",46183.0,"OPPO027944"],[1610,"Client 99","One off","Adres 1, Plaats 189","Office","Loan security - new/refi","Banking",null,0,"Invoiced",4500,"INV03002705",46234.0,"OPPO027944"],[1611,"Client 99","One off","Adres 2, Plaats 190","Office","Loan security - new/refi","Residential","Aug",2500,"Running",null,null,null,"OPPO027944"],[1612,"Client 99","One off","Adres 1, Plaats 190","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",3000,"INV03002561",46157.0,"OPPO027944","Y"],[1613,"Client 99","One off","Adres 2, Plaats 191","Hotel","Loan security - new/refi","Specials","Aug",12500,"Running",null,null,null,"OPPO027944"],[1614,"Client 99","One off","Adres 1, Plaats 191","Office","Loan security - new/refi","Banking",null,0,"Invoiced",-1250,"CR0300218",46049.0,"OPPO027944","Y"],[1615,"Client 99","One off","Adres 2, Plaats 192","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",0,"INV03002266",46038.0,"OPPO027944","Y"],[1616,"Client 99","One off","Adres 1, Plaats 192","Office","Loan security - new/refi","Banking",null,0,"Invoiced",2500,"INV03002275 + INV03002276",46038.0,"OPPO027944","Y"],[1617,"Client 99","One off","Adres 2, Plaats 193","Office","Loan security - new/refi","Banking",null,0,"Invoiced",1250,"INV03002297",46049.0,"OPPO027944","Y"],[1618,"Client 99","One off","Adres 1, Plaats 193","Other","Loan security - new/refi","Residential",null,0,"Invoiced",15000,"INV03002486",46122.0,"OPPO028762","Y"],[1619,"Client 99","One off","Adres 2, Plaats 194","Other","Loan security - new/refi","Residential",null,0,"Invoiced",-15000,"CR0300236",46147.0,"OPPO028762","Y"],[1620,"Client 99","One off","Adres 1, Plaats 194","Other","Loan security - new/refi","Residential",null,0,"Invoiced",15000,"INV03002538",46147.0,"OPPO028762","Y"],[1621,"Client 99","One off","Adres 2, Plaats 195","Other","Loan security - new/refi","Residential",null,0,"Invoiced",-15000,"CR0300237",46147.0,"OPPO028762","Y"],[1622,"Client 99","One off","Adres 1, Plaats 195","Other","Loan security - new/refi","Residential",null,0,"Invoiced",15000,"INV03002573",46169.0,"OPPO028762","Y"],[1623,"Client 99","One off","Adres 2, Plaats 196","Industrial","Loan security - new/refi","International",null,0,"Invoiced",12000,"INV03002708",46234.0,"OPPO029747"],[1624,"Client 99","Recurring","Adres 1, Plaats 196","Office","Accounts","International",null,0,"Running",38180,"INV03002649",46203.0,"OPPO028986"],[1625,"Client 99","Recurring","Adres 2, Plaats 197","Office","Accounts","International","Dec",38180,"Running",null,null,null,"OPPO028986"],[1626,"Client 99","One off","Adres 1, Plaats 197","Residential","Other","Residential","Aug",1800,"Running",null,null,null,null,"Y"],[1627,"Client 99","One off","Adres 2, Plaats 198","Office","Accounts","Specials",null,0,"Invoiced",0,"INV03002319 + INV03002320 + INV03002321",46059.0,null,"Y"],[1628,"Client 99","One off","Adres 1, Plaats 198","Industrial","Other","International",null,0,"Invoiced",8000,"INV03002659",46209.0,"OPPO029537","Y"],[1629,"Client 99","One off","Adres 2, Plaats 199","Retail","Accounts","International",null,0,"Invoiced",0,"INV03002292",46048.0,null,"Y"],[1630,"Client 99","One off","Adres 1, Plaats 199","Industrial","Accounts","International",null,0,"Invoiced",0,"INV03002260",46034.0,null,"Y"],[1631,"Client 99","One off","Adres 2, Plaats 200","Mixed","Accounts","International",null,0,"Invoiced","-","INV03002410",46099.0,null,"Y"],[1632,"Client 99","Recurring","Adres 1, Plaats 200","Industrial","Accounts","International",null,0,"Invoiced",1500,"INV03002662",46209.0,"OPPO028749"],[1633,"Client 99","Recurring","Adres 2, Plaats 201","Industrial","Accounts","International","Dec",2500,"Running",null,null,null,"OPPO028749"],[1634,"Client 99","One off","Adres 1, Plaats 201","Office","Loan security - new/refi","International",null,0,"Invoiced",12000,"INV03002483",46122.0,"OPPO028749"],[1635,"Client 99","One off","Adres 2, Plaats 202","Residential","Other","Residential",null,0,"Invoiced",3000,"INV03002466",46119.0,"OPPO028677","Y"],[1636,"Client 99","Recurring","Adres 1, Plaats 202","Mixed","Accounts","Residential",null,0,"Invoiced",7500,"INV03002462",46112.0,"OPPO02867","Y"],[1637,"Client 99","One off","Adres 2, Plaats 203","Other","Loan security - new/refi","Residential",null,0,"Invoiced",12500,"INV03002693",46223.0,"OPPO027911"],[1638,"Client 99","One off","Adres 1, Plaats 203","Mixed","Loan security - new/refi","Banking","Aug",2250,"Running",null,null,null,null,"Y"],[1639,"Client 99","One off","Adres 2, Plaats 204","Other","Loan security - new/refi","Banking",null,0,"Invoiced",-4000,"CR0300226",46080.0,"OPPO027911","Y"],[1640,"Client 99","One off","Adres 1, Plaats 204","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",3500,"INV03002261",46034.0,"OPPO027911","Y"],[1641,"Client 99","One off","Adres 2, Plaats 205","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",500,"INV03002264",46034.0,"OPPO027911","Y"],[1642,"Client 99","One off","Adres 1, Plaats 205","Other","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002272",46038.0,"OPPO027911","Y"],[1643,"Client 99","One off","Adres 2, Plaats 206","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002273",46038.0,"OPPO027911","Y"],[1644,"Client 99","One off","Adres 1, Plaats 206","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002288",46043.0,"OPPO027911","Y"],[1645,"Client 99","One off","Adres 2, Plaats 207","Other","Loan security - new/refi","Banking",null,0,"Invoiced",7500,"INV03002300",46050.0,"OPPO027911","Y"],[1646,"Client 99","One off","Adres 1, Plaats 207","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002305",46052.0,"OPPO027911","Y"],[1647,"Client 99","One off","Adres 2, Plaats 208","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002315",46057.0,"OPPO027911","Y"],[1648,"Client 99","One off","Adres 1, Plaats 208","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",13500,"INV03002317 + INV03002316",46057.0,"OPPO027911","Y"],[1649,"Client 99","One off","Adres 2, Plaats 209","Other","Loan security - new/refi","Banking",null,0,"Invoiced",12500,"INV03002322",46059.0,"OPPO027911","Y"],[1650,"Client 99","One off","Adres 1, Plaats 209","Other","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002365",46076.0,"OPPO027911","Y"],[1651,"Client 99","One off","Adres 2, Plaats 210","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",3250,"INV03002366",46076.0,"OPPO027911","Y"],[1652,"Client 99","One off","Adres 1, Plaats 210","Other","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002370",46080.0,"OPPO027911","Y"],[1653,"Client 99","One off","Adres 2, Plaats 211","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2250,"INV03002371",46080.0,"OPPO027911","Y"],[1654,"Client 99","One off","Adres 1, Plaats 211","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",7500,"INV03002373",46080.0,"OPPO027911","Y"],[1655,"Client 99","One off","Adres 2, Plaats 212","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",2500,"INV03002395",46094.0,"OPPO027911"],[1656,"Client 99","One off","Adres 1, Plaats 212","Healthcare","Loan security - new/refi","Banking",null,0,"Invoiced",4000,"INV03002396",46094.0,"OPPO027911"],[1657,"Client 99","One off","Adres 2, Plaats 213","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",7500,"INV03002403",46094.0,"OPPO027911","Y"],[1658,"Client 99","One off","Adres 1, Plaats 213","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002419",46099.0,"OPPO027911","Y"],[1659,"Client 99","One off","Adres 2, Plaats 214","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",2750,"INV03002424",46105.0,"OPPO027911"],[1660,"Client 99","One off","Adres 1, Plaats 214","Other","Loan security - new/refi","Banking",null,0,"Invoiced",2000,"INV03002465",46112.0,"OPPO027911"],[1661,"Client 99","One off","Adres 2, Plaats 215","Retail","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002467",46119.0,"OPPO027911"],[1662,"Client 99","One off","Adres 1, Plaats 215","Office","Loan security - new/refi","Banking",null,null,"Invoiced",4000,"INV03002533 + INV03002534",46142.0,"OPPO027911","Y"],[1663,"Client 99","One off","Adres 2, Plaats 216","Residential","Loan security - new/refi","Banking",null,null,"Invoiced",4000,"INV03002544",46148.0,"OPPO027911","Y"],[1664,"Client 99","One off","Adres 1, Plaats 216","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",7500,"INV03002559",46155.0,"OPPO027911"],[1665,"Client 100","One off","Adres 2, Plaats 217","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",-7500,"CR0300244 ",46182.0,"OPPO027911"],[1666,"Client 101","One off","Adres 1, Plaats 217","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",7500,"INV03002591",46182.0,"OPPO027911"],[1667,"Client 102","One off","Adres 2, Plaats 218","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",1750,"INV03002515",46135.0,"OPPO027911"],[1668,"Client 103","One off","Adres 1, Plaats 218","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002536",46147.0,"OPPO027911"],[1669,"Client 104","One off","Adres 2, Plaats 219","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002593",46183.0,"OPPO027911"],[1670,"Client 104","One off","Adres 1, Plaats 219","Other","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002665",46210.0,"OPPO027911"],[1671,"Client 105","One off","Adres 2, Plaats 220","Other","Loan security - new/refi","Banking",null,0,"Invoiced",3500,"INV03002553",46154.0,"OPPO027911"],[1672,"Client 105","One off","Adres 1, Plaats 220","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",1250,"INV03002577",46169.0,"OPPO027911"],[1673,"Client 105","One off","Adres 2, Plaats 221","Office","Loan security - new/refi","Banking","Aug",3000,"Running",null,null,null,"OPPO027911","Y"],[1674,"Client 105","One off","Adres 1, Plaats 221","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",3000,"INV03002680",46217.0,"OPPO027911"],[1675,"Cleint 106","One off","Adres 2, Plaats 222","Office","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002667",46211.0,"OPPO027911"],[1676,"Cleint 106","One off","Adres 1, Plaats 222","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",3500,"INV03002706",46234.0,"OPPO027911","Y"],[1677,"Cleint 106","One off","Adres 2, Plaats 223","Residential","Loan security - new/refi","Banking","Aug",3750,"Running",null,null,null,"OPPO027911","Y"],[1678,"Cleint 106","One off","Adres 1, Plaats 223","Residential","Loan security - new/refi","Banking","Aug",2000,"Running",null,null,null,"OPPO027911","Y"],[1679,"Client 107","One off","Adres 2, Plaats 224","Other","Loan security - new/refi","Specials","Aug",10000,"Running",null,null,null,"OPPO027911","Y"],[1680,"Client 108","One off","Adres 1, Plaats 224","Residential","Loan security - new/refi","Banking","Aug",4000,"Running",null,null,null,null,"Y"],[1681,"Client 109","One off","Adres 2, Plaats 225","Mixed","Loan security - new/refi","Banking","Sep",1750,"Running",null,null,null,null,"Y"],[1682,"Client 109","One off","Adres 1, Plaats 225","Industrial","Loan security - new/refi","Banking","Okt",2250,"Running",null,null,null,null,"Y"],[1683,"Client 109","One off","Adres 2, Plaats 226","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",null,null,null,"OPPO027911"],[1684,"Client 109","One off","Adres 1, Plaats 226","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",2250,"INV03002506",46129.0,"OPPO027911"],[1685,"Client 110","One off","Adres 2, Plaats 227","Retail","Loan security - new/refi","Banking",null,",","Invoiced",2500,"INV03002548",46153.0,"OPPO027911"],[1686,"Client 110","One off","Adres 1, Plaats 227","Mixed","Loan security - new/refi","Banking",null,0,"Invoiced",3500,"INV03002519",46141.0,"OPPO027911"],[1687,"Client 110","One off","Adres 2, Plaats 228","Residential","Loan security - new/refi","Banking",null,",","Invoiced",6500,"INV03002514",46135.0,"OPPO027911"],[1688,"Client 110","One off","Adres 1, Plaats 228","Residential","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002566",46164.0,"OPPO027911"],[1689,"Client 110","One off","Adres 2, Plaats 229","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",1500,"INV03002487",46122.0,"OPPO027911"],[1690,"Client 110","One off","Adres 1, Plaats 229","Mixed","Loan security - new/refi","Banking","Aug",5250,"Running",null,null,null,"OPPO027911"],[1691,"Client 110","One off","Adres 2, Plaats 230","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002590",46182.0,"OPPO027911"],[1692,"Client 110","One off","Adres 1, Plaats 230","Mixed","Loan security - new/refi","Banking","Aug",7000,"Running",null,null,null,"OPPO027911"],[1693,"Client 110","One off","Adres 2, Plaats 231","Industrial","Loan security - new/refi","International","Aug",4500,"Running",null,null,null,"OPPO027911"],[1694,"Client 111","One off","Adres 1, Plaats 231","Other","Loan security - new/refi","Specials","Aug",9000,"Running",null,null,null,"OPPO027911"],[1695,"Cleint 112","One off","Adres 2, Plaats 232","Mixed","Loan security - new/refi","International",null,0,"Invoiced",16000,"INV03002327",46063.0,"OPPO028176"],[1696,"Client 113","One off","Adres 1, Plaats 232","Mixed","Loan security - new/refi","Residential",null,null,"Invoiced",500,"INV03002539",46147.0,"OPPO028940"],[1697,"Client 114","One off","Adres 2, Plaats 233","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",2500,"INV03002283",46041.0,"OPPO027966","N"],[1698,"Client 115","One off","Adres 1, Plaats 233","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",0,"INV03002471",46120.0,null,"Y"],[1699,"Client 116","One off","Adres 2, Plaats 234","Industrial","Loan security - new/refi","Banking",null,0,"Invoiced",0,"INV03002274",46038.0,null,"Y"],[1700,"Client 116","One off","Adres 1, Plaats 234","Industrial","Loan security - new/refi","International",null,0,"Invoiced",4000,"INV03002683",46218.0,"OPPO027962","Y"],[1701,"Client 117","One off","Adres 2, Plaats 235","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",2000,"INV03002291",46048.0,"OPPO027947","Y"],[1702,"Client 117","One off","Adres 1, Plaats 235","Residential","Loan security - new/refi","Other",null,0,"Invoiced",4000,"INV03002490",46122.0,"OPPO027947","Y"],[1703,"Client 117","One off","Adres 2, Plaats 236","Residential","Loan security - new/refi","Residential",null,null,"Invoiced",5000,"INV03002563",46161.0,"OPPO027947","Y"],[1704,"Client 118","One off","Adres 1, Plaats 236","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3100,"INV03002562",46161.0,"OPPO027947","Y"],[1705,"Client 119","One off","Adres 2, Plaats 237","Industrial","Other","International",null,0,"Invoiced",5000,"INV03002696",46223.0,"OPPO028900"],[1706,"Client 120","One off","Adres 1, Plaats 237","Industrial","Loan security - new/refi","International",null,0,"Invoiced",15000,"INV03002516",46141.0,"OPPO028900","Y"],[1707,"Client 120","One off","Adres 2, Plaats 238","Industrial","Loan security - new/refi","International",null,0,"Invoiced",-15000,"CR0300240",46155.0,"OPPO028900","Y"],[1708,"Client 121","One off","Adres 1, Plaats 238","Industrial","Loan security - new/refi","International",null,0,"Invoiced",15000,"INV03002560",46155.0,"OPPO028900","Y"],[1709,"Client 122","One off","Adres 2, Plaats 239","Hotel","Acquisition / disposal","Specials",null,0,"Invoiced",1000,"INV03002524",46141.0,"OPPO028604","Y"],[1710,"Client 122","One off","Adres 1, Plaats 239","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",0,"INV03002285",46043.0,null,"Y"],[1711,"Client 123","Recurring","Adres 2, Plaats 240","Other","Accounts","International",null,0,"Invoiced",31250,"INV03002612 + INV03002614",46203.0,"OPPO028988"],[1712,"Client 124","Recurring","Adres 1, Plaats 240","Other","Accounts","Specials",null,null,"Invoiced",25000,"INV03002613",46203.0,"OPPO028989"],[1713,"Client 125","Recurring","Adres 2, Plaats 241","Other","Accounts","International","Dec",0,"Running",null,null,null,"OPPO028990"],[1714,"Cleint 126","Recurring","Adres 1, Plaats 241","Other","Accounts","Specials","Dec",0,"Running",null,null,null,"OPPO028991"],[1715,"Client 127","Recurring","Adres 2, Plaats 242","Other","Accounts","International",null,0,"Invoiced",0,"INV03002309",46057.0,null,"Y"],[1716,"Client 128","Recurring","Adres 1, Plaats 242","Other","Accounts","International",null,0,"Invoiced",10300,"INV03002503 + INV03002502 + INV03002501",46127.0,"OPPO028808","Y"],[1717,"Client 129","Recurring","Adres 2, Plaats 243","Other","Accounts","International",null,0,"Invoiced",5250,"INV03002654 + INV03002653 + INV03002652 ",46204.0,"OPPO028808"],[1718,"Client 130","Recurring","Adres 1, Plaats 243","Other","Accounts","International","Okt",5250,"Running",null,null,null,"OPPO028808"],[1719,"Client 131","Recurring","Adres 2, Plaats 244","Other","Accounts","International","Dec",5250,"Running",null,null,null,"OPPO028808"],[1720,"Client 132","Recurring","Adres 1, Plaats 244","Other","Feeshare","International","Aug",-1030,"Accrual - FS",null,null,null,"OPPO028808"],[1721,"Client 132","Recurring","Adres 2, Plaats 245","Other","Feeshare","International","Aug",-525,"Accrual - FS",null,null,null,"OPPO028808"],[1722,"Client 133","Recurring","Adres 1, Plaats 245","Other","Feeshare","International","Okt",-525,"Accrual - FS",null,null,null,"OPPO028808"],[1723,"Client 110","Recurring","Adres 2, Plaats 246","Other","Feeshare","International","Dec",-525,"Accrual - FS",null,null,null,"OPPO028808"],[1724,"Client 111","One off","Adres 1, Plaats 246","Industrial","Loan security - new/refi","International",null,0,"Invoiced",16250,"INV03002570 + INV03002569",46168.0,"OPPO028985"],[1725,"Cleint 112","One off","Adres 2, Plaats 247","Industrial","Loan security - new/refi","International",null,0,"Invoiced",37500,"INV03002357",46069.0,"OPPO028206","Y"],[1726,"Client 113","One off","Adres 1, Plaats 247","Mixed","Loan security - new/refi","Residential",null,0,"Invoiced",3500,"INV03002284",46041.0,"OPPO027990","Y"],[1727,"Client 114","One off","Adres 2, Plaats 248","Mixed","Loan security - new/refi","Specials","Aug",5500,"Running",null,null,null,null,"Y"],[1728,"Client 115","One off","Adres 1, Plaats 248","Other","Accounts","Specials",null,0,"Invoiced",0,"INV03002420",46100.0,null,"Y"],[1729,"Client 116","Recurring","Adres 2, Plaats 249","Hotel","Accounts","Specials",null,0,"Invoiced",16000,"INV03002681",46217.0,"OPPO027949"],[1730,"Client 116","Recurring","Adres 1, Plaats 249","Hotel","Accounts","Specials","Dec",16000,"Running",null,null,null,"OPPO027950"],[1731,"Client 117","One off","Adres 2, Plaats 250","Healthcare","Acquisition / disposal","Banking",null,0,"Invoiced",2700,"INV03002543",46147.0,"OPPO028979","Y"],[1732,"Client 117","One off","Adres 1, Plaats 250","Residential","Other","Banking",null,0,"Invoiced",1080,"INV03002542",46147.0,"OPPO028979","Y"],[1733,"Client 117","One off","Adres 2, Plaats 251","Healthcare","Acquisition / disposal","Banking","Aug",3500,"Running",null,null,null,"OPPO029334","Y"],[1734,"Client 118","One off","Adres 1, Plaats 251","Residential","Other","Residential",null,0,"Invoiced",0,"INV03002335",46065.0,null,"Y"],[1735,"Client 119","One off","Adres 2, Plaats 252","Healthcare","Accounts","Banking",null,"-","Invoiced",4000,"INV03002669",46212.0,"OPPO029595","Y"],[1736,"Client 120","One off","Adres 1, Plaats 252","Hotel","Accounts","Specials","Sep",42000,"Running",null,null,null,null,"Y"],[1737,"Client 120","One off","Adres 2, Plaats 253","Hotel","Other","Specials","Aug",3000,"Running",null,null,null,null,"Y"],[1738,"Cleint 121","Recurring","Adres 1, Plaats 253","Mixed","Accounts","International",null,0,"Invoiced",12250,"INV03002629 + INV03002630 + INV03002631 + INV03002632 + INV03002633",46203.0,"OPPO028987","Y"],[1739,"Cleint 122","One off","Adres 2, Plaats 254","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",0,"INV03002263",46034.0,null,"Y"],[1740,"Cleint 122","One off","Adres 1, Plaats 254","Residential","Loan security - new/refi","Residential",null,0,"Invoiced"],[1741,"Client 123","Recurring","Adres 2, Plaats 255","Other","Feeshare","Specials",null,null,"Invoiced",588,null,46161.0,"OPPO028159"],[1742,"Client 124","One off","Adres 1, Plaats 255","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",2600,"INV03002411 + INV03002413 + INV03002412 + INV03002414 + INV03002415 + INV03002417 + INV03002416 + INV03002418",46099.0,"OPPO028543 ","Y"],[1743,"Client 125","One off","Adres 2, Plaats 256","Industrial","Accounts","International",null,0,"Invoiced",3500,"INV03002301",46051.0,"OPPO028071","Y"],[1744,"Cleint 126","One off","Adres 1, Plaats 256","Residential","Accounts","Residential",null,0,"Invoiced",23300,"INV03002489",46122.0,"OPPO028758","Y"],[1745,"Client 127","One off","Adres 2, Plaats 257","Residential","Accounts","Residential",null,0,"Invoiced",1985,"INV03002585",46178.0,"OPPO029277"],[1746,"Client 128","One off","Adres 1, Plaats 257","Hotel","Loan security - new/refi","Specials",null,0,"Invoiced",6000,"INV03002527",46141.0,"OPPO028902","Y"],[1747,"Client 129","One off","Adres 2, Plaats 258","Residential","Loan security - new/refi","Residential",null,0,"Invoiced",3000,"INV03002535",46142.0,"OPPO028931","Y"],[1748,"Client 130","One off","Adres 1, Plaats 258","Office","Accounts","International","Aug",5500,"Running",null,null,null,null,"Y"],[1749,"Client 131","One off","Adres 2, Plaats 259","Industrial","Loan security - new/refi","International","Aug",4750,"Running",null,null,null,null,"Y"],[1750,"Client 132","Recurring","Adres 1, Plaats 259","Hotel","Accounts","Specials",null,0,"Invoiced",6500,"INV03002636",46203.0,"OPPO029334","Y"],[1751,"Client 132","Recurring","Adres 2, Plaats 260","Hotel","Accounts","Specials","Dec",10000,"Running",null,null,null,"OPPO029335","Y"],[1752,"Cleint 133","One off","Adres 1, Plaats 260","Office","Loan security - new/refi","Specials",null,0,"Invoiced",4500,"INV03002703",46231.0,"OPPO029711","Y"]]},{"naam":"Lijsten","rijen":[]},{"naam":"Dashboard","rijen":[]}]};
 const LOGO_SVG = `<svg viewBox="0 0 100 100"><title>Savills</title><g fill="none"><path fill="#fede07" d="M100 0H0v100h100z"/><path d="M14.576 93.633c-5.114 0-8.582-2.62-8.582-7.485v-.187H8.8v.125c0 3.18 2.307 5.052 5.8 5.052 1.871 0 5.426-.81 5.426-3.804 0-5.801-13.347-1.685-13.347-9.98 0-4.18 3.892-6.05 7.759-6.05 4.553 0 7.646 2.62 7.646 6.86v.188H19.28v-.187c0-2.745-1.933-4.366-5.052-4.366-2.183 0-4.74.936-4.74 3.43 0 5.426 13.347 1.622 13.347 9.98 0 4.428-4.14 6.424-8.257 6.424M38.8 82.032c-.435.374-1.496.562-2.058.624l-1.995.25c-3.743.436-7.235 1.184-7.235 4.428 0 2.682 2.307 3.804 4.365 3.804 2.121 0 3.992-.748 5.302-2.058 1.06-1.123 1.622-2.62 1.622-4.241v-2.807zm.5 10.977c-.313-1.123-.313-3.368-.313-3.368-1.06 2.308-3.492 3.992-7.296 3.992-4.366 0-6.986-2.37-6.986-6.237 0-5.614 5.051-6.176 9.98-6.736l1.06-.125c1.995-.25 3.056-.5 3.056-2.683 0-2.807-1.622-4.054-5.114-4.054-2.932 0-5.302 1.247-5.302 4.429v.187h-2.807v-.187c0-4.927 3.93-6.923 8.42-6.923 4.865 0 7.66 1.933 7.66 6.486v11.477c0 .998.176 3.12.426 3.742h-2.785zm20.644-21.082h.25L52.96 93.009h-3.056l-7.486-21.082h3.255l5.79 17.864 5.729-17.864zm5.022-5.549A1.971 1.971 0 0 0 63 64.413c-1.048 0-1.965.851-1.965 1.899A1.97 1.97 0 0 0 63 68.277a1.97 1.97 0 0 0 1.965-1.965v.066zm-3.4 5.549h2.932v21.082h-2.932zm5.801-7.984h2.931V93.01h-2.93zm5.739 0h2.932V93.01h-2.932zm13.197 29.69c-5.177 0-8.645-2.62-8.645-7.485v-.187h2.807v.125c0 3.18 2.37 5.052 5.8 5.052 1.871 0 5.49-.81 5.49-3.804 0-5.801-13.41-1.685-13.41-9.98 0-4.18 3.892-6.05 7.758-6.05 4.616 0 7.71 2.62 7.71 6.86v.188h-2.807v-.187c0-2.745-1.933-4.366-5.052-4.366-2.245 0-4.803.936-4.803 3.43 0 5.426 13.41 1.622 13.41 9.98 0 4.428-4.14 6.424-8.257 6.424" fill="#c80c0f"/></g></svg>`;
+const BUILD = '5e7f1d9';
 </script>
 <script>
 "use strict";
@@ -931,7 +987,7 @@ function leesHistorie(tab){
       if (L < 0) continue;
       const kolommen = maandKolommen(R, r, L);
       const waarden = rr => kolommen.map(k => { const x = (R[rr]||[])[k]; return typeof x==='number' ? x : (leesBedrag(x).w ?? null); });
-      const blok = {jaar, tab:tab.naam, rij:r+1, forecast: waarden(r), invoiced:null, secured:null};
+      const blok = {jaar, tab:tab.naam, rij:r+1, forecast: waarden(r), invoiced:null, secured:null, kolommen, labelKol:L};
       for (let rr=r+1; rr<Math.min(R.length, r+9); rr++){
         const label = celTekst((R[rr]||[])[L]).trim().toLowerCase();
         const jaarCel = (R[rr]||[]).slice(0, L).some(x => typeof x==='number' && x>=2000 && x<=2100);
@@ -1961,8 +2017,9 @@ function exporteerExcel(){
     a.href = URL.createObjectURL(blob); a.download = naam;
     document.body.appendChild(a); a.click(); a.remove();
     setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+    diagLog('info', `Excel gemaakt: ${Math.round(data.length / 1024)} kB${S.team !== 'Alle' ? ', voor één team' : ''}`);
     meld(`Excel gemaakt: ${naam}`);
-  } catch(e){ console.error(e); meld('Het Excel-bestand kon niet worden gemaakt'); }
+  } catch(e){ console.error(e); diagFout(e, 'Excel exporteren'); meld('Het Excel-bestand kon niet worden gemaakt. De foutzoeker op de Data-stap heeft de details.'); }
 }
 
 /* =====================================================================
@@ -2130,7 +2187,12 @@ function maakVoorbeeld(){
   schaalVoorbeeld();
   $('#pdfInfo').textContent = 'Bezig met opmaken…';
   $('#pdfLaden').classList.remove('verborgen');
-  frame.srcdoc = bouwRapport({voorbeeld:true});
+  try { frame.srcdoc = bouwRapport({voorbeeld:true}); }
+  catch(e){
+    diagFout(e, 'rapport opmaken');
+    $('#pdfLaden').classList.add('verborgen');
+    $('#pdfInfo').innerHTML = '<span style="color:var(--signaal)">Het rapport kon niet worden gemaakt.</span> De foutzoeker op de Data-stap heeft de details.';
+  }
 }
 function voorbeeldKlaar(){
   if (STUDIO.wacht) return false;
@@ -2210,7 +2272,7 @@ function koppelRapport(){
       let w = null; try { w = frame.contentWindow; } catch(e){}
       if (!w || !doc || w.document !== doc) return;
       if (!terug && (w.scrollY > 0 || doc.documentElement.scrollHeight >= doel + w.innerHeight)){ if (!w.scrollY) w.scrollTo(0, doel); terug = true; }
-      if (w.__klaar){ if (!terug && !w.scrollY) w.scrollTo(0, doel); rapportInfo(); return; }
+      if (w.__klaar){ if (!terug && !w.scrollY) w.scrollTo(0, doel); rapportInfo(); if (w.__fout) diagFout({name:'Fout', message:w.__fout, stack:w.__stack || ''}, 'rapport over bladen verdelen'); return; }
       setTimeout(wacht, 80);
     };
     wacht();
@@ -2459,7 +2521,7 @@ ${voorbeeld ? '' : `<div class="balkje geenprint"><span>Kies in het afdrukvenste
 <div id="paginas"></div>
 <script>var VOETTEKST=${JSON.stringify(voettekst)}, MET_VOET=${R.voet ? 'true' : 'false'}, LOOP=${JSON.stringify(loop)};
 window.__klaar=false;
-(${pagineer.toString()})();
+try { (${pagineer.toString()})(); } catch(e){ window.__fout = String(e && e.message || e); window.__stack = String(e && e.stack || ''); window.__klaar = true; }
 <\/script></body></html>`;
 }
 
@@ -2653,13 +2715,508 @@ function pagineer(){
 }
 
 /* =====================================================================
+   8. FOUTZOEKER
+   Een technisch verslag in een terminalvenster op de Data-stap: wat de
+   tool in het werkboek vond, hoe hij de regels las, wat afwijkt en welke
+   fouten er waren. Zonder clientnamen, adressen, ID's, factuurnummers,
+   bestandsnaam en (standaard) zonder bedragen, zodat je het veilig kunt
+   kopiëren en in een gesprek kunt plakken. Rijnummers en kolomletters
+   verwijzen naar het Excel-bestand.
+   ===================================================================== */
+const DIAG = {open:false, bedragen:false, filter:'alles', extra:[], log:[], fouten:[], wb:null, bestand:null, duur:{}, mislukt:null};
+
+function diagLog(soort, tekst){
+  DIAG.log.push({t: Date.now(), soort, tekst: String(tekst).slice(0, 300)});
+  if (DIAG.log.length > 60) DIAG.log.shift();
+}
+/* Een fout vastleggen. Paden in de stack worden ingekort tot de bestandsnaam
+   met regel en kolom, zodat er geen mapnamen (zoals je gebruikersnaam) in staan. */
+const kortPad = s => String(s).replace(/(?:file|https?|blob):\/\/\S*\/([^\/\s)]+)/g, '$1').replace(/[A-Z]:\\\S*\\([^\\\s)]+)/g, '$1');
+function diagFout(err, waar){
+  const msg = kortPad(err && err.message ? err.message : String(err || 'onbekende fout'));
+  const stack = err && err.stack ? String(err.stack).split('\n').slice(1, 6).map(r => kortPad(r.trim())).join('\n') : '';
+  DIAG.fouten.push({t: Date.now(), waar, soort: err && err.name ? err.name : 'Fout', msg: msg.slice(0, 300), stack: stack.slice(0, 600)});
+  if (DIAG.fouten.length > 15) DIAG.fouten.shift();
+  diagLog('fout', `${waar}: ${msg}`);
+  try { if ($('#foutzoeker')) tekenFoutzoeker(); } catch(e){}
+}
+addEventListener('error', e => diagFout(e.error || {message: e.message, stack: `bij ${e.filename || '?'}:${e.lineno}:${e.colno}`}, 'fout op de pagina'));
+addEventListener('unhandledrejection', e => diagFout(e.reason, 'fout in een taak op de achtergrond'));
+
+/* ---------- vormen in plaats van inhoud ---------- */
+const SOORT_VELD = {id:'nummer', client:'client', soort:'categorie', object:'tekst', type:'categorie', purpose:'categorie', team:'categorie', maand:'maand',
+  secured:'bedrag', status:'categorie', invoiced:'bedrag', factuurnr:'nummer', factuurdatum:'datum', oppo:'nummer', dynamics:'categorie'};
+const maskeer = s => String(s).replace(/\d/g, '9');                       // "€ 1.234,50" → "€ 9.999,99"
+const zonderBedragen = s => DIAG.bedragen ? s : String(s).replace(/[−-]?€\s?[−-]?[\d.,]+(?:\s?(?:mln|k)\b)?/g, '€ …');
+const fmtBedrag = v => v == null || !isFinite(v) ? '–' : DIAG.bedragen ? (v < 0 ? '−' : '') + Math.abs(v).toLocaleString('nl-NL', {maximumFractionDigits:2}) : 'verborgen';
+function cijfers(v){
+  const d = String(Math.trunc(Math.abs(v))).length;
+  return `${v < 0 ? 'negatief, ' : ''}${d} ${d === 1 ? 'cijfer' : 'cijfers'}${Number.isInteger(v) ? '' : ', met decimalen'}`;
+}
+let PSEUDO = null;
+function pseudoniem(v){
+  if (!PSEUDO || PSEUDO.m !== S.m){
+    PSEUDO = new Map(); PSEUDO.m = S.m;
+    (S.m ? S.m.regels : []).forEach(o => { const k = o.client.toLowerCase(); if (o.client !== '(onbekende client)' && !PSEUDO.has(k)) PSEUDO.set(k, 'client-' + String(PSEUDO.size + 1).padStart(3, '0')); });
+  }
+  if (v && typeof v === 'object' && v.e) return `fout ${v.e}`;
+  const s = celTekst(v).replace(/\s+/g, ' ').trim().replace(/^cleint\b/i, 'Client');
+  if (!s) return 'leeg';
+  return PSEUDO.get(s.toLowerCase()) || `tekst (${s.length} tekens)`;
+}
+/* Hoe ziet een cel eruit, zonder te laten zien wat erin staat? */
+function celVorm(v, soort){
+  if (v == null || (typeof v === 'string' && !v.trim())) return 'leeg';
+  if (typeof v === 'object' && v.e) return `fout ${v.e}`;
+  if (typeof v === 'boolean') return v ? 'WAAR' : 'ONWAAR';
+  if (soort === 'client') return pseudoniem(v);
+  if (soort === 'bedrag'){
+    if (typeof v === 'number') return v === 0 ? 'getal 0' : DIAG.bedragen ? `getal ${fmtBedrag(v)}` : `getal (${cijfers(v)})`;
+    return `tekst "${kort(DIAG.bedragen ? String(v) : maskeer(v), 24)}"`;
+  }
+  if (soort === 'datum' || soort === 'maand'){
+    if (typeof v === 'number') return v > 20000 && v < 80000 ? `datum ${datumNL(serialNaarDatum(v))}` : `getal ${v}`;
+    return `tekst "${kort(String(v).trim(), 24)}"`;
+  }
+  if (soort === 'categorie') return typeof v === 'number' ? `getal ${v}` : `"${kort(String(v).replace(/\s+/g, ' ').trim(), 30)}"`;
+  if (typeof v === 'number') return `getal (${cijfers(v)})`;
+  return `tekst (${String(v).trim().length} tekens)`;
+}
+function celType(v){
+  if (v == null || (typeof v === 'string' && !v.trim())) return 'leeg';
+  if (typeof v === 'object' && v.e) return 'fout';
+  if (typeof v === 'number') return 'getal';
+  if (typeof v === 'string') return 'tekst';
+  return 'anders';
+}
+/* "B, C, D, F" → "B–D, F" */
+function bereiken(idx){
+  const uit = []; let i = 0;
+  while (i < idx.length){ let j = i; while (j + 1 < idx.length && idx[j+1] === idx[j] + 1) j++; uit.push(j > i + 1 ? `${kolLetter(idx[i])}–${kolLetter(idx[j])}` : j === i + 1 ? `${kolLetter(idx[i])}, ${kolLetter(idx[j])}` : kolLetter(idx[i])); i = j + 1; }
+  return uit.join(', ');
+}
+const rijLijst = (nrs, max = 25) => nrs.length <= max ? nrs.join(', ') : `${nrs.slice(0, max).join(', ')} … (+${nrs.length - max})`;
+const telLijst = (tel) => Object.entries(tel).filter(([, n]) => n).map(([k, n]) => `${k} ${n}`).join(' · ') || '–';
+function overslagSoort(rij){
+  const tekst = (rij || []).map(celTekst).join(' ').toLowerCase();
+  const soort = /tota/.test(tekst) ? 'totaalregel' : /kopi|copy|sjabloon|template/.test(tekst) ? 'sjabloonregel (om te kopiëren)' : /correct|check|controle|klopt/.test(tekst) ? 'controleregel' : 'regel zonder status en zonder bedrag';
+  const gevuld = (rij || []).map((v, i) => leegCel(v) ? -1 : i).filter(i => i >= 0);
+  return {soort, gevuld: gevuld.length ? bereiken(gevuld) : 'niets', verdacht: soort.startsWith('regel zonder')};
+}
+function browserNaam(){
+  const ua = navigator.userAgent; let m;
+  const b = (m = ua.match(/Edg\/(\d+)/)) ? 'Edge ' + m[1] : (m = ua.match(/OPR\/(\d+)/)) ? 'Opera ' + m[1] : (m = ua.match(/Chrome\/(\d+)/)) ? 'Chrome ' + m[1]
+    : (m = ua.match(/Firefox\/(\d+)/)) ? 'Firefox ' + m[1] : (m = ua.match(/Version\/(\d+)[\d.]* .*Safari/)) ? 'Safari ' + m[1] : 'onbekende browser';
+  const os = /Windows NT 10/.test(ua) ? 'Windows 10/11' : /Windows/.test(ua) ? 'Windows' : /Mac OS X/.test(ua) ? 'macOS' : /Android/.test(ua) ? 'Android' : /iPhone|iPad/.test(ua) ? 'iOS' : /Linux/.test(ua) ? 'Linux' : 'onbekend systeem';
+  return `${b} · ${os}`;
+}
+const opslagKB = k => { try { const s = localStorage.getItem(k); return s ? `${Math.round(s.length / 1024)} kB` : 'leeg'; } catch(e){ return 'niet beschikbaar'; } };
+const tijdKort = t => new Date(t).toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit', second:'2-digit'});
+const datumTijdKort = t => { const d = new Date(t); return `${datumNL(new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate())))} ${d.toLocaleTimeString('nl-NL', {hour:'2-digit', minute:'2-digit'})}`; };
+
+/* Waarom wijkt gefactureerd in maand i af van de rij Invoiced in Excel?
+   v = tool − Excel. Zoekt een eenvoudige verklaring in de regels. */
+function verklaarVerschil(m, i, v){
+  const bijna = (a, b) => Math.abs(a - b) < .5;
+  const somB = (l, f = o => o.bedrag) => l.reduce((s, o) => s + f(o), 0);
+  const nrs = l => l.map(o => o.rij).sort((a, b) => a - b);
+  const inMaand = m.regels.filter(o => o.cat === 'inv' && o.telt && o.mnd === i + 1);
+  if (v > 0){
+    const tekst = inMaand.filter(o => o.issues.includes('bedrag_tekst_omgezet'));
+    if (tekst.length && bijna(somB(tekst), v)) return `${tekst.length === 1 ? 'bedrag' : 'bedragen'} als tekst in rij ${rijLijst(nrs(tekst), 10)}: Excel telt tekst niet mee, de tool wel`;
+    const een = inMaand.filter(o => bijna(o.bedrag, v)).sort((a, b) => b.rij - a.rij);
+    if (een.length) return `precies het bedrag van rij ${een[0].rij}${een.length > 1 ? ` (of ${een.slice(1, 4).map(o => o.rij).join(', ')})` : ''}: telt de formule in Excel die rij niet mee?`;
+    const onder = inMaand.slice().sort((a, b) => b.rij - a.rij); let s = 0;
+    for (let k = 0; k < onder.length; k++){ s += onder[k].bedrag; if (bijna(s, v)) return `de onderste ${k + 1} ${k ? 'regels' : 'regel'} van deze maand (vanaf rij ${onder[k].rij}): valt het bereik van de formule in Excel te kort?`; }
+  } else {
+    const w = -v;
+    const ander = m.regels.filter(o => o.cat !== 'inv' && o.invoiced && o.factuurdatum && o.factuurdatum.getUTCFullYear() === m.jaar && o.factuurdatum.getUTCMonth() === i);
+    if (ander.length && bijna(somB(ander, o => o.invoiced), w)) return `Invoiced amount bij een andere status in rij ${rijLijst(nrs(ander), 10)}: Excel telt die mee, de tool niet`;
+    const anderJaar = m.regels.filter(o => o.cat === 'inv' && o.issues.includes('inv_ander_jaar') && o.factuurdatum && o.factuurdatum.getUTCMonth() === i);
+    if (anderJaar.length && bijna(somB(anderJaar), w)) return `facturen uit een ander jaar in rij ${rijLijst(nrs(anderJaar), 10)}: kijkt de formule in Excel alleen naar de maand?`;
+    const geenStatus = m.regels.filter(o => !o.telt && o.invoiced && o.factuurdatum && o.factuurdatum.getUTCMonth() === i);
+    if (geenStatus.length && bijna(somB(geenStatus, o => o.invoiced), w)) return `regels die niet meetellen (status) in rij ${rijLijst(nrs(geenStatus), 10)}: Excel telt die wel mee`;
+  }
+  return 'geen eenvoudige verklaring gevonden in de regels';
+}
+
+/* ---------- het verslag ---------- */
+function diagRegels(){
+  const L = [];
+  const kop = t => L.push({s:'kop', t});
+  const r = (s, t, bij) => L.push({s, t, bij: !!bij});
+  const lbl = (a, b) => `${a.padEnd(17)}${b}`;
+  const veilig = (naam, f) => { try { f(); } catch(e){ r('fout', `${naam}: dit deel van het verslag kon niet worden gemaakt (${kortPad(e.message)})`); } };
+  // Is het laatste bestand mislukt, dan gaat het verslag over dat bestand (ook als er nog een vorig bestand open staat).
+  const mislukt = DIAG.mislukt, m = mislukt ? null : S.m, wb = mislukt ? DIAG.wb : (S.wb || DIAG.wb);
+
+  r('titel', `=== Prognose foutzoeker ===`);
+  r('zacht', `versie ${VERSIE.nr} (${datumNL(new Date(VERSIE.datum))}) · build ${BUILD} · gemaakt ${datumTijdKort(Date.now())} · ${DIAG.bedragen ? 'MET bedragen' : 'zonder namen en bedragen'}`);
+  r('zacht', 'Rijnummers en kolomletters verwijzen naar het Excel-bestand. Clientnamen zijn vervangen door client-001 enz.');
+
+  veilig('Omgeving', () => {
+    kop('Omgeving');
+    r('info', lbl('browser', `${browserNaam()} · taal ${navigator.language} · tijdzone ${Intl.DateTimeFormat().resolvedOptions().timeZone || '?'}`));
+    r('info', lbl('scherm', `${screen.width}×${screen.height} · venster ${innerWidth}×${innerHeight} · zoom ${Math.round(devicePixelRatio * 100)}%`));
+    r('info', lbl('pagina', `${location.protocol === 'file:' ? 'lokaal bestand' : location.protocol.replace(':', '')} · ${document.title}`));
+    r('info', lbl('opslag', `onthouden bestand ${opslagKB(SLEUTEL)} · versies ${opslagKB(VERSIES)} · rapportkeuzes ${opslagKB(R_SLEUTEL)}`));
+  });
+
+  veilig('Bestand', () => {
+    kop('Bestand');
+    if (mislukt) r('fout', `Het laatste bestand kon niet worden gelezen: ${mislukt}`);
+    if (mislukt && S.m) r('zacht', `  het vorige bestand (${S.m.regels.length} regels) staat nog open in het dashboard`, 1);
+    if (!wb){ if (!mislukt) r('info', 'Er is (nog) geen bestand ingelezen.'); return; }
+    const herkomst = S.bron === 'voorbeeld' && S.wb === wb ? 'voorbeelddata (fictief)' : S.bron === 'hervat' && S.wb === wb ? 'onthouden bestand van een vorige keer' : 'gekozen bestand';
+    const b = DIAG.bestand;
+    r('info', lbl('bron', `${herkomst}${b ? ` · ${b.ext} · ${Math.round(b.grootte / 1024)} kB` : ''}${wb.bestandTijd ? ` · opgeslagen ${datumTijdKort(wb.bestandTijd)}` : ''} · ingelezen ${datumTijdKort(wb.tijd)}`));
+    if (DIAG.duur.lezen != null) r('info', lbl('duur', `uitpakken en lezen ${DIAG.duur.lezen} ms · herkennen ${DIAG.duur.model ?? '–'} ms`));
+    r('info', lbl('tabbladen', `${wb.tabs.length}`));
+    const regelTab = m ? m.tab : null, histTab = m && m.hist[m.jaar] ? m.hist[m.jaar].tab : (m ? m.histTabs[0] : null);
+    const breed = Math.min(28, Math.max(...wb.tabs.map(t => t.naam.length)) + 2);
+    wb.tabs.forEach(t => {
+      const kp = t.rijen.length ? vindKoprij(t) : null;
+      const rol = t.naam === regelTab ? '← regels' : t.naam === histTab ? '← forecast en vorige jaren' : m && m.histTabs.includes(t.naam) ? '← vorige jaren' : '';
+      const leegNiet = S.bron === 'hervat' && !t.rijen.length ? 'niet onthouden' : `${t.rijen.length} rijen`;
+      r('sub', `"${t.naam}"`.padEnd(breed) + leegNiet.padStart(14) + `${t.verborgen ? ' (verborgen)' : ''}${kp ? ` · koprij ${kp.rij + 1}, ${kp.score} kolommen herkend` : ''}${rol ? '  ' + rol : ''}`);
+    });
+    if (!m){
+      // geen model: waarom vond de tool geen tab met regels?
+      r('let', 'Geen tab met regels gevonden. Per tab de beste koprij (nodig: minstens 4 kolommen, waaronder status en een bedrag):');
+      wb.tabs.forEach(t => {
+        if (!t.rijen.length) return;
+        let beste = null;
+        for (let i = 0; i < Math.min(t.rijen.length, 30); i++){
+          const kol = {}; let score = 0;
+          (t.rijen[i] || []).forEach((v, c) => { if (typeof v !== 'string') return; const s = v.trim().toLowerCase(); if (!s || s.length > 60) return;
+            for (const [k, re] of KOLOMREGELS){ if (kol[k] == null && re.test(s)){ kol[k] = c; score++; break; } } });
+          if (!beste || score > beste.score) beste = {rij:i, kol, score};
+        }
+        if (beste) r('sub', `  "${t.naam}": rij ${beste.rij + 1} · ${beste.score} herkend (${Object.keys(beste.kol).map(k => VELDNAMEN[k]).join(', ') || 'niets'})${beste.kol.status == null ? ' · geen status-kolom' : ''}${beste.kol.secured == null && beste.kol.invoiced == null ? ' · geen bedrag-kolom' : ''}`, 1);
+      });
+    } else if (m.kandidaten.length > 1){
+      r('info', lbl('kandidaten', m.kandidaten.map(k => `"${k.naam}" (${k.n} regels)`).join(' · ')));
+    }
+  });
+
+  if (m) veilig('Koprij', () => {
+    kop(`Koprij en kolommen · tab "${m.tab}", rij ${m.kop.rij + 1}`);
+    const velden = Object.keys(VELDNAMEN);
+    const gevonden = velden.filter(k => m.kop.kol[k] != null);
+    r(gevonden.length === velden.length ? 'ok' : 'info', `${gevonden.length} van ${velden.length} kolommen herkend`);
+    velden.sort((a, b) => (m.kop.kol[a] ?? 999) - (m.kop.kol[b] ?? 999)).forEach(k => {
+      const c = m.kop.kol[k];
+      r(c == null ? (['status','secured','invoiced','maand','factuurdatum','client'].includes(k) ? 'let' : 'zacht') : 'sub',
+        c == null ? `    ${VELDNAMEN[k].padEnd(22)} niet gevonden` : `${kolLetter(c).padEnd(4)}${VELDNAMEN[k].padEnd(22)}← "${kort(m.kop.koppen[c], 40)}"`);
+    });
+    const gebruikt = new Set(Object.values(m.kop.kol));
+    const rest = (m.kop.koppen || []).map((h, i) => ({h: String(h || '').trim(), i})).filter(x => x.h && !gebruikt.has(x.i));
+    if (rest.length) r('zacht', `niet gebruikt: ${rest.slice(0, 30).map(x => `${kolLetter(x.i)} "${kort(x.h, 24)}"`).join(', ')}${rest.length > 30 ? ' …' : ''}`);
+  });
+
+  if (m) veilig('Regels', () => {
+    kop('Regels');
+    const tab = wb.tabs.find(t => t.naam === m.tab), T = tab ? tab.rijen : [];
+    const kol = m.kop.kol, cel = (o, k) => kol[k] == null ? null : (T[o.rij - 1] || [])[kol[k]];
+    r('info', `${m.regels.length} regels gelezen uit rij ${m.kop.rij + 2} t/m ${T.length} · ${m.regels.filter(o => o.telt).length} tellen mee · jaar ${m.jaar}`);
+    if (m.overgeslagen.length){
+      r('info', `${meervoud(m.overgeslagen.length, 'rij', 'rijen')} overgeslagen:`);
+      m.overgeslagen.slice(0, 20).forEach(x => { const d = overslagSoort(T[x.rij - 1]); r(d.verdacht ? 'let' : 'sub', `${d.verdacht ? '' : '    '}rij ${x.rij}: ${d.soort} · gevuld: ${d.gevuld}`); });
+      if (m.overgeslagen.length > 20) r('zacht', `… en nog ${m.overgeslagen.length - 20}`);
+    }
+    // statussen zoals ze in het bestand staan
+    const st = {};
+    m.regels.forEach(o => { const k = o.statusTekst || '(leeg)'; st[k] = st[k] || {n:0, cat:o.cat}; st[k].n++; });
+    const catNaam = {inv:'gefactureerd', sec:'secured', acc:'accrual', uit:'telt bewust niet mee', overig:'NIET HERKEND', leeg:'leeg'};
+    r('info', 'statussen:');
+    Object.entries(st).sort((a, b) => b[1].n - a[1].n).forEach(([k, x]) => r(x.cat === 'overig' || x.cat === 'leeg' ? 'let' : 'sub', `${x.cat === 'overig' || x.cat === 'leeg' ? '' : '    '}"${kort(k, 30)}"`.padEnd(36) + `${String(x.n).padStart(4)}  → ${catNaam[x.cat] || x.cat}`));
+    // maanden bij Running en accrual
+    const mt = {'tekst herkend':0, 'getal 1-12':0, datum:0, leeg:0, 'niet herkend':0, 'ander jaar':0};
+    m.regels.filter(o => o.cat === 'sec' || o.cat === 'acc').forEach(o => {
+      const v = cel(o, 'maand'), t = celType(v);
+      if (o.issues.includes('maand_ander_jaar')) mt['ander jaar']++;
+      else if (o.issues.includes('maand_onbekend')) mt['niet herkend']++;
+      else if (t === 'leeg') mt.leeg++;
+      else if (t === 'getal') mt[v > 20000 ? 'datum' : 'getal 1-12']++;
+      else mt['tekst herkend']++;
+    });
+    r(mt['niet herkend'] || mt['ander jaar'] ? 'let' : 'info', lbl('projected month', `${telLijst(mt)}   (Running en accrual)`));
+    const voorbeeldMaanden = [...new Set(m.regels.filter(o => o.issues.includes('maand_onbekend')).map(o => kort(o.maandTekst, 16)))].slice(0, 8);
+    if (voorbeeldMaanden.length) r('sub', `    niet herkend: ${voorbeeldMaanden.map(x => `"${x}"`).join(', ')}`, 1);
+    // factuurdatum bij Invoiced
+    const ft = {datum:0, 'tekst als datum':0, leeg:0, 'niet herkend':0, 'ander jaar':0};
+    m.regels.filter(o => o.cat === 'inv').forEach(o => {
+      const v = cel(o, 'factuurdatum'), t = celType(v);
+      if (o.issues.includes('inv_ander_jaar')) ft['ander jaar']++;
+      else if (o.issues.includes('datum_onbekend')) ft['niet herkend']++;
+      else if (t === 'leeg') ft.leeg++;
+      else if (t === 'getal') ft.datum++;
+      else ft['tekst als datum']++;
+    });
+    const leegMetBedrag = m.regels.some(o => o.cat === 'inv' && o.bedrag && o.issues.includes('inv_geen_datum'));
+    r(ft['niet herkend'] || ft['ander jaar'] || leegMetBedrag ? 'let' : 'info', lbl('invoice date', `${telLijst(ft)}   (Invoiced)${ft.leeg && !leegMetBedrag ? ' · de lege zijn allemaal zonder bedrag' : ''}`));
+    // bedragen per kolom
+    ['secured', 'invoiced'].forEach(k => {
+      if (kol[k] == null) return;
+      const tel = {getal:0, 'streepje of komma':0, 'tekst omgezet naar getal':0, 'tekst onleesbaar':0, leeg:0, fout:0, anders:0}, vormen = {};
+      m.regels.forEach(o => {
+        const v = cel(o, k), t = celType(v);
+        if (t !== 'tekst'){ tel[t]++; return; }
+        const b = leesBedrag(v), soort = b.streep ? 'streepje of komma' : b.w != null ? 'tekst omgezet naar getal' : 'tekst onleesbaar';
+        tel[soort]++; const f = maskeer(String(v).trim()).slice(0, 20); vormen[f] = (vormen[f] || 0) + 1;
+      });
+      r(tel['tekst omgezet naar getal'] || tel['tekst onleesbaar'] || tel.fout ? 'let' : 'info', lbl(VELDNAMEN[k].toLowerCase(), `${telLijst(tel)}   (kolom ${kolLetter(kol[k])})`));
+      const vv = Object.entries(vormen).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      if (vv.length) r('sub', `    tekstvormen: ${vv.map(([f, n]) => `"${f}" ×${n}`).join(', ')}`, 1);
+    });
+    const tot = optellen(m.regels);
+    if (DIAG.bedragen){
+      r('info', lbl('totalen', `gefactureerd ${fmtBedrag(tot.tot.inv)} · secured ${fmtBedrag(tot.tot.sec)} · accrual ${fmtBedrag(tot.tot.acc)} · zonder maand ${fmtBedrag(tot.zonder.inv + tot.zonder.sec + tot.zonder.acc)}`));
+      r('sub', `    per maand (I+F): ${tot.maandTot.map((v, i) => `${MND[i]} ${fmtBedrag(v)}`).join(' · ')}`, 1);
+    } else {
+      const zonder = m.regels.filter(o => o.telt && !o.mnd && ['inv','sec','acc'].includes(o.cat) && o.bedrag).length;
+      r(zonder ? 'let' : 'info', lbl('zonder maand', `${meervoud(zonder, 'regel', 'regels')} met een bedrag maar zonder maand`));
+    }
+  });
+
+  if (m) veilig('Controle', () => {
+    kop('Controle');
+    const groepen = controleGroepen(S.ctrl);
+    if (!groepen.length) r('ok', 'Alle bedragen tellen mee, elk in een maand.');
+    groepen.forEach(g => {
+      const st = [...g.statussen].slice(0, 4).map(x => `"${kort(x, 20)}"`).join(', ');
+      r('let', `${g.code} · ${g.t} · ${meervoud(g.regels.length, 'regel', 'regels')}${DIAG.bedragen ? ` · ${fmtBedrag(g.mist || g.maand)} ${g.mist ? 'telt niet mee' : 'zonder maand'}` : ` · ${g.mist ? 'bedrag telt niet mee' : 'bedrag valt in geen maand'}`}`);
+      r('sub', `    rij ${rijLijst(g.regels.map(o => o.rij).sort((a, b) => a - b))}${st ? ` · status ${st}` : ''}`, 1);
+    });
+    const impact = impactCodes(S.ctrl), tel = {};
+    m.regels.forEach(o => o.issues.forEach(c => { (tel[c] = tel[c] || []).push(o); }));
+    const overig = Object.keys(CHECKS).filter(c => tel[c] && !groepen.some(g => g.code === c));
+    if (overig.length) r('info', 'ter info (geen invloed op de cijfers):');
+    overig.forEach(c => {
+      const l = tel[c], zonderImpact = l.filter(o => !(impact.get(o) || new Set()).has(c));
+      r('sub', `    ${c.padEnd(22)}${String(zonderImpact.length).padStart(4)} · rij ${rijLijst(zonderImpact.map(o => o.rij).sort((a, b) => a - b), 12)}`);
+    });
+  });
+
+  if (wb) veilig('Forecast', () => {
+    kop('Forecast en vorige jaren');
+    const hist = m ? m.hist : {};
+    const jaren = Object.keys(hist).map(Number).sort((a, b) => b - a);
+    if (!jaren.length){ r('let', 'Geen forecast gevonden: geen rij met een jaartal en het woord Forecast ernaast.'); return; }
+    const gevuld = a => a ? a.filter(v => v != null && v !== 0).length : 0;
+    jaren.forEach(j => {
+      const h = hist[j];
+      const kols = h.kolommen ? h.kolommen.filter(c => c >= 0) : [];
+      r('info', `${j}  tab "${h.tab}" · forecast rij ${h.rij} (${gevuld(h.forecast)}/12 gevuld)${h.invoicedRij ? ` · invoiced rij ${h.invoicedRij} (${gevuld(h.invoiced)}/12 gevuld)` : ' · geen rij Invoiced'}${kols.length ? ` · maanden in ${kolLetter(Math.min(...kols))}–${kolLetter(Math.max(...kols))}` : ''}`);
+      if (h.invoicedRij && !gevuld(h.invoiced) && j === (m && m.jaar)) r('let', `de rij Invoiced van ${j} (rij ${h.invoicedRij}) is leeg: formules zonder uitgerekende waarde? Het bestand opslaan in Excel helpt`);
+    });
+    if (m && !m.forecast) r('let', `Geen forecast voor ${m.jaar}: het dashboard vergelijkt dan niet met de forecast.`);
+    if (!m) return;
+    const a = aansluiting(m);
+    if (!a){ r('info', `Aansluiting: niet te controleren (geen bedragen in de rij Invoiced voor ${m.jaar}).`); return; }
+    if (!a.afwijk){ r('ok', `Aansluiting met "${a.tab}" rij ${a.rij}: alle 12 maanden gelijk.`); return; }
+    r('let', `Aansluiting met "${a.tab}" rij ${a.rij}: ${meervoud(a.afwijk, 'maand wijkt', 'maanden wijken')} af${DIAG.bedragen ? ` (samen ${fmtBedrag(a.totaal)})` : ''}`);
+    MND.forEach((n, i) => {
+      const v = a.versch[i]; if (Math.abs(v) < 1) return;
+      r('sub', `    ${n}: ${v > 0 ? 'tool hoger dan Excel' : 'Excel hoger dan de tool'}${DIAG.bedragen ? ` (${v > 0 ? '+' : ''}${fmtBedrag(v)})` : ''} → ${verklaarVerschil(m, i, v)}`, 1);
+    });
+  });
+
+  veilig('Instellingen', () => {
+    kop('Instellingen');
+    if (m){
+      r('info', lbl('team', S.team === 'Alle' ? 'alle teams' : `"${S.team}"`));
+      const echt = new Date(), auto = echt.getFullYear() === m.jaar && S.lopend && S.peil === echt.getMonth() + 1;
+      r('info', lbl('huidige maand', `${S.lopend ? `${MNDL[S.peil - 1]} ${m.jaar}` : `heel ${m.jaar} afgesloten`} · afgesloten t/m ${afgesloten() ? MNDL[afgesloten() - 1] : '–'}${auto ? ' (automatisch: vandaag)' : ' (handmatig gekozen)'}`));
+      r('info', lbl('teams', groepeer(m.regels, 'team').map(t => `"${kort(t.naam, 20)}" ${t.n}`).join(' · ')));
+      r('info', lbl('vorige versie', S.vorige ? `ja, van ${datumTijdKort(S.vorige.tijd)} · ${S.wijz ? meervoud(S.wijz.aantal, 'wijziging', 'wijzigingen') : '–'}` : 'nee'));
+    }
+    r('info', lbl('scherm', `${S.stap}${S.stap === 'overzicht' ? ` · ${S.weergave}` : ''} · rapport: ${PROFIELEN[R.profiel] ? PROFIELEN[R.profiel].naam : R.profiel}, ${R.sjabloon}, ${R.richting}`));
+  });
+
+  veilig('Gebeurtenissen', () => {
+    kop('Gebeurtenissen');
+    if (!DIAG.log.length) r('zacht', 'nog niets');
+    DIAG.log.slice(-25).forEach(x => r(x.soort === 'fout' ? 'fout' : x.soort === 'let' ? 'let' : 'zacht', `${tijdKort(x.t)}  ${zonderBedragen(x.tekst)}`));
+  });
+
+  veilig('Fouten', () => {
+    kop('Fouten op de pagina');
+    if (!DIAG.fouten.length){ r('ok', 'Geen fouten opgevangen.'); return; }
+    DIAG.fouten.forEach(f => {
+      r('fout', `${tijdKort(f.t)}  ${f.soort}: ${zonderBedragen(f.msg)}  (${f.waar})`);
+      if (f.stack) f.stack.split('\n').forEach(s => r('zacht', '      ' + s, 1));
+    });
+  });
+  return L;
+}
+
+/* Hoe is één rij gelezen? */
+function diagRij(n){
+  const L = [], r = (s, t, bij) => L.push({s, t, bij: !!bij});
+  const m = S.m;
+  L.push({s:'kop', t:`Rij ${n}`});
+  if (!m){ r('let', 'Er is geen bestand geladen.'); return L; }
+  const tab = S.wb.tabs.find(t => t.naam === m.tab), T = tab ? tab.rijen : [];
+  if (!T.length){ r('let', `De rijen van "${m.tab}" zijn niet beschikbaar.`); return L; }
+  if (n <= m.kop.rij){ r('info', `Rij ${n} staat boven de koprij (rij ${m.kop.rij + 1}) en wordt niet gelezen.`); return L; }
+  if (n === m.kop.rij + 1){ r('info', 'Dit is de koprij met de kolomnamen.'); return L; }
+  const rij = T[n - 1];
+  if (!rij || !rij.some(v => !leegCel(v))){ r('info', `Rij ${n} is leeg${n > T.length ? `; de laatste gevulde rij is ${T.length}` : ''}.`); return L; }
+  r('zacht', `tab "${m.tab}"`);
+  Object.keys(VELDNAMEN).filter(k => m.kop.kol[k] != null).sort((a, b) => m.kop.kol[a] - m.kop.kol[b]).forEach(k => {
+    const c = m.kop.kol[k];
+    r('sub', `${kolLetter(c).padEnd(4)}${VELDNAMEN[k].padEnd(22)}${celVorm(rij[c], SOORT_VELD[k])}`);
+  });
+  const ov = m.overgeslagen.find(x => x.rij === n);
+  const o = m.regels.find(x => x.rij === n);
+  if (ov){ const d = overslagSoort(rij); r(d.verdacht ? 'let' : 'info', `Overgeslagen: ${d.soort}.`); return L; }
+  if (!o){ r('let', 'Deze rij staat niet in de regels (onverwacht).'); return L; }
+  const catNaam = {inv:'gefactureerd', sec:'secured', acc:'accrual', uit:'bewust niet meegeteld', overig:'status niet herkend', leeg:'zonder status'}[o.cat] || o.cat;
+  const bron = o.cat === 'inv' ? 'Invoiced amount' : o.cat === 'sec' || o.cat === 'acc' ? 'Secured Fee' : 'Invoiced amount of Secured Fee';
+  r(o.telt ? 'ok' : 'let', `${o.telt ? 'Telt mee' : 'Telt NIET mee'} · ${catNaam} · maand ${o.mnd ? MNDL[o.mnd - 1] : 'geen'} · bedrag uit ${bron}: ${DIAG.bedragen ? fmtBedrag(o.bedrag) : o.bedrag ? 'gevuld' : '0 of leeg'}`);
+  const imp = impactCodes(S.ctrl).get(o) || new Set();
+  o.issues.forEach(c => r(imp.has(c) ? 'let' : 'info', `${c}: ${(CHECKS[c] || {t:c}).t}${imp.has(c) ? ' (invloed op de cijfers)' : ''}`));
+  const a = S.ctrl.aandacht.find(x => x.o === o);
+  if (a) a.adv.forEach(x => r('zacht', `  advies: ${zonderBedragen(x.a)}`, 1));
+  return L;
+}
+const DIAG_HULP = [
+  {s:'kop', t:'Hulp'},
+  {s:'info', t:'393 of rij 393     laat zien hoe rij 393 uit Excel is gelezen'},
+  {s:'info', t:'wis                haalt de bekeken rijen weer weg'},
+  {s:'info', t:'kopieer            zet het verslag op het klembord'},
+  {s:'info', t:'bedragen aan|uit   bedragen wel of niet in het verslag'},
+  {s:'info', t:'afwijkingen | alles  alleen de afwijkingen, of alles'},
+];
+
+/* ---------- weergave ---------- */
+const DIAG_PREFIX = {ok:'✓ ', let:'! ', fout:'✗ ', info:'· ', sub:'  ', zacht:'  ', titel:''};
+function diagFilter(lijnen){
+  if (DIAG.filter !== 'afwijkingen') return lijnen;
+  const uit = []; let kop = null, open = false, begin = true;
+  for (const l of lijnen){
+    if (l.s === 'titel' || (begin && l.s === 'zacht')){ uit.push(l); continue; }
+    if (l.s === 'kop'){ kop = l; open = false; begin = false; continue; }
+    if (l.s === 'let' || l.s === 'fout'){ if (kop){ uit.push(kop); kop = null; } uit.push(l); open = true; continue; }
+    if (l.bij && open){ uit.push(l); continue; }
+    open = false;
+  }
+  if (!uit.some(l => l.s === 'let' || l.s === 'fout')) uit.push({s:'ok', t:'Geen afwijkingen gevonden.'});
+  return uit;
+}
+function diagAlles(){
+  const basis = diagRegels();
+  return {basis, lijnen: diagFilter(basis).concat(...DIAG.extra.map(x => x.lijnen))};
+}
+const diagTekst = lijnen => lijnen.map(l => l.s === 'kop' ? `\n── ${l.t} ──` : (DIAG_PREFIX[l.s] ?? '') + l.t).join('\n').trim() + '\n';
+const diagHtml = lijnen => lijnen.map(l => l.s === 'kop' ? `<span class="tk">\n── ${esc(l.t)} ──</span>` : `<span class="t-${l.s}">${esc((DIAG_PREFIX[l.s] ?? '') + l.t)}</span>`).join('\n');
+/* Tellers voor de kop van het paneel: afwijkingen in het bestand, en fouten (een mislukt bestand of een fout in de tool) */
+function diagTelling(basis){
+  let kop = '', afw = 0;
+  basis.forEach(l => { if (l.s === 'kop') kop = l.t; else if (l.s === 'let' && !/^Gebeurtenissen|^Fouten/.test(kop)) afw++; });
+  return {afw, fout: DIAG.fouten.length + (DIAG.mislukt ? 1 : 0)};
+}
+function tekenFoutzoeker(){
+  const el = $('#foutzoeker'); if (!el) return;
+  const {basis, lijnen} = diagAlles(), tel = diagTelling(basis);
+  const chips = (tel.fout ? `<span class="cchip mis">${meervoud(tel.fout, 'fout', 'fouten')}</span>` : '')
+    + (tel.afw ? `<span class="cchip let">${meervoud(tel.afw, 'afwijking', 'afwijkingen')}</span>` : '')
+    + (!tel.fout && !tel.afw ? `<span class="cchip ok">${IK.vink(10)} niets bijzonders</span>` : '');
+  const pre = $('#fzUit'), wasOnder = pre && pre.scrollTop + pre.clientHeight >= pre.scrollHeight - 4, wasScroll = pre ? pre.scrollTop : 0;
+  const invoer = $('#fzInvoer'), hadFocus = invoer && document.activeElement === invoer, waarde = invoer ? invoer.value : '';
+  el.classList.toggle('open', DIAG.open);
+  el.innerHTML = `
+    <div class="fzkop" data-diag="open" role="button" tabindex="0" aria-expanded="${DIAG.open}" aria-controls="fzLijf">
+      <span class="fzik">${svgP('<path d="M5 7.5l4.5 4.5L5 16.5"/><path d="M12 17h7"/>', 17, 2.2)}</span>
+      <div class="fztekst"><h2>Foutzoeker</h2><div class="fzsub">Technisch verslag voor als er iets niet klopt: wat de tool in het bestand vond en hoe hij het las. Zonder namen en bedragen, om te kopiëren en te delen met Claude.</div></div>
+      <span class="rechtsin"><span class="fzchips">${chips}</span><span class="mini fzknop">${DIAG.open ? 'Inklappen' : 'Openen'}</span></span>
+    </div>
+    ${DIAG.open ? `<div id="fzLijf">
+      <div class="fzbalk">
+        <span class="segment klein" role="group" aria-label="Wat tonen"><button data-diag="filter-alles" class="${DIAG.filter === 'alles' ? 'aan' : ''}">Alles</button><button data-diag="filter-afwijkingen" class="${DIAG.filter === 'afwijkingen' ? 'aan' : ''}">Alleen afwijkingen</button></span>
+        <label class="fzvink" title="Standaard staan er geen bedragen in het verslag"><input type="checkbox" data-diag="bedragen"${DIAG.bedragen ? ' checked' : ''}> Bedragen meesturen</label>
+        <div class="rest"><button class="k stil" data-diag="download">Opslaan als .txt</button><button class="k vol" data-diag="kopieer" id="fzKopieer">Kopiëren</button></div>
+      </div>
+      <div class="term">
+        <div class="tkop"><i></i><i></i><i></i><span>prognose — foutzoeker</span><span class="trechts">${lijnen.length} regels${DIAG.bedragen ? ' · met bedragen' : ''}</span></div>
+        <pre id="fzUit" tabindex="0" aria-label="Verslag van de foutzoeker">${diagHtml(lijnen)}</pre>
+        <label class="tprompt"><span aria-hidden="true">›</span><input id="fzInvoer" placeholder="typ een rijnummer om die rij na te kijken, of help" autocomplete="off" spellcheck="false" aria-label="Opdracht voor de foutzoeker"></label>
+      </div>
+      <div class="fznoot"><b>Wat er niet in staat:</b> clientnamen (die heten client-001, client-002 …), adressen, FLOW ID's, factuur- en opportunitynummers, de bestandsnaam en de mappen op je computer. Bedragen alleen als je ze zelf aanzet. <b>Wel:</b> rijnummers, kolomnamen, tabbladnamen, statussen, teams en maanden (en bij een bekeken rij ook purpose en type), zodat de rij in Excel terug te vinden is. Kijk het gerust na voordat je het deelt.</div>
+    </div>` : ''}`;
+  const npre = $('#fzUit');
+  if (npre){ if (DIAG.naarOnder || wasOnder && DIAG.extra.length) npre.scrollTop = npre.scrollHeight; else npre.scrollTop = wasScroll; DIAG.naarOnder = false; }
+  const ninv = $('#fzInvoer');
+  if (ninv){ ninv.value = waarde; if (hadFocus || DIAG.focus){ ninv.focus(); DIAG.focus = false; } }
+}
+async function diagKopieer(){
+  const tekst = diagTekst(diagAlles().lijnen);
+  let gelukt = false;
+  try { if (navigator.clipboard && window.isSecureContext){ await navigator.clipboard.writeText(tekst); gelukt = true; } } catch(e){}
+  if (!gelukt){
+    const ta = document.createElement('textarea'); ta.value = tekst; ta.setAttribute('readonly', ''); ta.style.cssText = 'position:fixed;left:-9999px;top:0';
+    document.body.appendChild(ta); ta.select();
+    try { gelukt = document.execCommand('copy'); } catch(e){}
+    ta.remove();
+  }
+  const k = $('#fzKopieer');
+  if (gelukt){
+    meld('Gekopieerd. Plak het in je gesprek met Claude.');
+    if (k){ k.textContent = 'Gekopieerd ✓'; clearTimeout(diagKopieer.t); diagKopieer.t = setTimeout(() => { const kk = $('#fzKopieer'); if (kk) kk.textContent = 'Kopiëren'; }, 2200); }
+  } else meld('Kopiëren lukte niet. Gebruik Opslaan als .txt.');
+  return gelukt;
+}
+function diagDownload(){
+  const blob = new Blob([diagTekst(diagAlles().lijnen)], {type:'text/plain;charset=utf-8'});
+  const d = new Date(), dd = n => String(n).padStart(2, '0');
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = `prognose-foutzoeker-${d.getFullYear()}-${dd(d.getMonth() + 1)}-${dd(d.getDate())}.txt`;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+}
+function diagOpdracht(invoer){
+  const s = String(invoer || '').trim().toLowerCase();
+  if (!s) return;
+  let mt;
+  if ((mt = s.match(/^(?:rij\s*)?(\d{1,6})$/))) DIAG.extra.push({lijnen: diagRij(+mt[1])});
+  else if (/^(help|\?|hulp)$/.test(s)) DIAG.extra.push({lijnen: DIAG_HULP});
+  else if (/^(wis|clear|leeg)$/.test(s)){ DIAG.extra = []; }
+  else if (/^kopieer|^copy/.test(s)){ diagKopieer(); }
+  else if ((mt = s.match(/^bedragen\s+(aan|uit)$/))) DIAG.bedragen = mt[1] === 'aan';
+  else if (/^(afwijkingen|alles)$/.test(s)) DIAG.filter = s;
+  else DIAG.extra.push({lijnen: [{s:'let', t:`Onbekende opdracht "${kort(invoer, 30)}". Typ help voor de mogelijkheden.`}]});
+  if (DIAG.extra.length > 12) DIAG.extra = DIAG.extra.slice(-12);
+  DIAG.naarOnder = true; DIAG.focus = true;
+  const inv = $('#fzInvoer'); if (inv) inv.value = '';
+  tekenFoutzoeker();
+}
+function diagKlik(wat){
+  if (wat === 'open'){ DIAG.open = !DIAG.open; tekenFoutzoeker(); if (DIAG.open) requestAnimationFrame(() => $('#foutzoeker').scrollIntoView({behavior:'smooth', block:'nearest'})); return; }
+  if (wat === 'filter-alles' || wat === 'filter-afwijkingen'){ DIAG.filter = wat.slice(7); tekenFoutzoeker(); return; }
+  if (wat === 'kopieer'){ diagKopieer(); return; }
+  if (wat === 'download'){ diagDownload(); return; }
+}
+/* Vanuit een foutmelding of een kapot scherm: naar de Data-stap met de foutzoeker open. */
+function naarFoutzoeker(){
+  DIAG.open = true;
+  sluitVenster();
+  naarStap('data', {anker:'#foutzoeker'});
+}
+
+/* =====================================================================
    7. INTERFACE
    Opbouw zoals de Portefeuille Tool: een vaste kop met stappen, een
    Data-stap met het werkboek, de controle en een snel rapport; daarna
    het overzicht, de pijplijn, teams & klanten, wijzigingen, de regels
    en de rapportstudio.
    ===================================================================== */
-const VERSIE = {nr:'2.0', datum:'2026-10-28', nieuw:[
+const VERSIE = {nr:'2.1', datum:'2026-10-29', nieuw:[
+  'Foutzoeker op de Data-stap: een inklapbaar terminalvenster met een technisch verslag van wat de tool in het bestand vond, hoe hij elke kolom las, wat afwijkt en welke fouten er waren.',
+  'Het verslag is zonder clientnamen (client-001 enz.), adressen, ID\'s, factuurnummers en bestandsnaam, en standaard zonder bedragen. Kopieer het en plak het in een gesprek met Claude.',
+  'Typ een rijnummer in de foutzoeker om te zien hoe die rij uit Excel is gelezen. Wijkt gefactureerd af van de tab met forecast, dan zoekt de foutzoeker zelf de regels die het verschil verklaren.',
+  'Gaat er iets mis bij het lezen of tekenen, dan wordt de fout vastgelegd en kun je vanuit de melding meteen naar de foutzoeker.',
+], eerder:[
   'Zelfde opbouw en vormgeving als de Referentie Tool en de Portefeuille Tool: stappen in de kop, een Data-stap, tegels en grafiekkaarten.',
   'Data: het werkboek in één vak, met de gebruikte tabbladen in Excel-groen, de herkende kolommen, de eerste regels en de aansluiting met de tab met forecast.',
   'Controle staat nu bij de data: alleen wat invloed heeft op de cijfers bovenaan, de rest onder “Alles tonen”. Elk punt toont de regels met hun rijnummer in Excel.',
@@ -2752,7 +3309,17 @@ function render(){
     const l = aan.offsetLeft - nav.offsetLeft, r = l + aan.offsetWidth;
     if (l < nav.scrollLeft) nav.scrollLeft = l - 8; else if (r > nav.scrollLeft + nav.clientWidth) nav.scrollLeft = r - nav.clientWidth + 8;
   }
-  ({data:pData, overzicht:pOverzicht, pijplijn:pPijplijn, teams:pTeams, wijzigingen:pWijz, regels:pRegels, rapport:pRapport})[S.stap]();
+  try {
+    ({data:pData, overzicht:pOverzicht, pijplijn:pPijplijn, teams:pTeams, wijzigingen:pWijz, regels:pRegels, rapport:pRapport})[S.stap]();
+  } catch(e){
+    // Een scherm dat niet getekend kan worden: de fout vastleggen en de weg naar de foutzoeker wijzen.
+    diagFout(e, `scherm ${S.stap}`);
+    const plek = {data:'#dataBlad', overzicht:'#ovBlad', pijplijn:'#pijpBlad', teams:'#teamBlad', wijzigingen:'#wijzBlad', regels:'#regelBlad', rapport:'#stKeuzes'}[S.stap];
+    const kaart = `<div class="paneel kapot"><h2>Dit scherm kon niet worden getekend</h2><p>Er ging iets mis in de tool, niet in je bestand. De foutzoeker heeft de details vastgelegd, zonder namen en bedragen.</p>
+      ${S.stap === 'data' ? '' : `<button class="k vol" data-foutzoeker>Open de foutzoeker</button>`}</div>`;
+    if (plek && $(plek)) $(plek).innerHTML = S.stap === 'data' ? kaart + '<section class="paneel foutzoeker" id="foutzoeker"></section>' : kaart;
+    if (S.stap === 'data'){ DIAG.open = true; tekenFoutzoeker(); }
+  }
 }
 function naarStap(st, opts={}){
   if (!S.m && st !== 'data') return;
@@ -2797,9 +3364,11 @@ function pData(){
         <div class="vakhint"><span class="ti">${IK.tabel(16)}</span><span><span class="tt">Regels van het jaar</span><span class="ts">Eén regel per opdracht, zoals in &lt;&lt;&lt;2026&gt;&gt;&gt;. Herkend aan de koprij: Client, Team, Instruction status, Secured Fee, Invoiced amount.</span></span></div>
         <div class="vakhint"><span class="ti">${IK.grafiek(16)}</span><span><span class="tt">Forecast en vorige jaren</span><span class="ts">Per jaar een rij Forecast en een rij Invoiced, zoals in old history. Herkend aan het jaartal met het woord Forecast ernaast.</span></span></div>
         <div class="vakhint"><span class="ti">${IK.slot(16)}</span><span><span class="tt">Alles blijft in deze browser</span><span class="ts">Het bestand wordt hier gelezen en nergens heen gestuurd. Het laatste bestand en de vorige versie worden onthouden op deze computer.</span></span></div>
-      </div></section>`;
+      </div></section>
+      ${DIAG.mislukt || DIAG.fouten.length ? '<section class="paneel foutzoeker" id="foutzoeker"></section>' : ''}`;
     $('#dataSamen').innerHTML = 'Nog geen bestand geladen. Probeer de voorbeelddata om te zien wat de tool doet.';
     $('#knopNaarOverzicht').disabled = true;
+    tekenFoutzoeker();
     return;
   }
   const Y = m.jaar, wb = S.wb, ctrl = S.ctrl;
@@ -2895,9 +3464,11 @@ function pData(){
       <div class="vakvoorbeeld"><div class="vbkop"><span class="vbl">Eerste regels</span>${histRijen.length ? `<span class="segment klein" role="group"><button data-vbtab="regels" class="${S.vbTab==='regels'?'aan':''}">Regels</button><button data-vbtab="hist" class="${S.vbTab==='hist'?'aan':''}">Forecast en vorige jaren</button></span>` : ''}<button class="lnk" data-stap-naar="regels">Alle regels bekijken</button></div>
         ${S.vbTab === 'regels' || !histRijen.length ? voorbeeldRegels : voorbeeldHist}</div>
     </section>
-    <div class="dataonder">${check}${snel}</div>`;
+    <div class="dataonder">${check}${snel}</div>
+    <section class="paneel foutzoeker" id="foutzoeker"></section>`;
   $('#dataSamen').innerHTML = `<b>${meervoud(m.regels.length,'regel','regels')}</b> uit ${esc(m.tab)}${m.forecast ? ` · forecast uit ${esc(m.hist[Y].tab)}` : ''}${S.bron === 'voorbeeld' ? ' (voorbeelddata)' : ''}`;
   $('#knopNaarOverzicht').disabled = false;
+  tekenFoutzoeker();
 }
 
 /* =====================================================================
@@ -3347,9 +3918,10 @@ function toonDetail(sleutel){
 }
 function kolLetter(i){ let s = ''; i++; while (i > 0){ const r = (i-1) % 26; s = String.fromCharCode(65+r) + s; i = Math.floor((i-1)/26); } return s; }
 function toonOver(){
-  openVenster(`<div class="vkop"><h2>Prognose</h2><p>Versie <b>${VERSIE.nr}</b> · ${datumLang(VERSIE.datum)}</p></div>
+  openVenster(`<div class="vkop"><h2>Prognose</h2><p>Versie <b>${VERSIE.nr}</b> · ${datumLang(VERSIE.datum)} · build ${BUILD}</p></div>
     <div class="vlijf over">
       <h3>Nieuw in deze versie</h3><ul>${VERSIE.nieuw.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+      <h3>Versie 2.0</h3><ul>${VERSIE.eerder.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
       <h3>Hoe rekent Prognose</h3><ul>
         <li><b>Gefactureerd</b>: status Invoiced. Het bedrag komt uit Invoiced amount en telt in de maand van de Invoice date.</li>
         <li><b>Secured</b>: status Running. Het bedrag komt uit Secured Fee en telt in de Projected month.</li>
@@ -3373,6 +3945,8 @@ function bevestigOpnieuw(){
 function wisAlles(){
   try { localStorage.removeItem(SLEUTEL); localStorage.removeItem(VERSIES); } catch(e){}
   Object.assign(S, {wb:null, m:null, ctrl:null, vorige:null, wijz:null, team:'Alle', stap:'data', stand:'', standKlasse:'', bron:''});
+  Object.assign(DIAG, {wb:null, bestand:null, mislukt:null, extra:[], duur:{}});
+  diagLog('info', 'opnieuw begonnen: onthouden bestand en versies gewist');
   sluitVenster(); render(); scrollTo({top:0}); meld('Gewist. Lees een bestand in om verder te gaan.');
 }
 function meld(t){ const el = $('#melding'); el.textContent = t; el.classList.add('aan'); clearTimeout(meld.t); meld.t = setTimeout(() => el.classList.remove('aan'), 3400); }
@@ -3388,8 +3962,11 @@ function foutTekst(e){
   if (e.message === 'GEEN_DATA') return `Geen tab met regels gevonden (tabs: ${(e.tabs||[]).join(', ')}). Een regeltab heeft een koprij met onder meer Client, Team, Instruction status, Secured Fee en Invoiced amount.`;
   console.error(e); return 'Er ging iets mis bij het lezen: ' + (e.message || e);
 }
+/* Korte reden voor de foutzoeker, zonder tabnamen of inhoud */
+const foutCode = e => e && e.message === 'GEEN_XLSX' ? 'geen geldig xlsx-bestand (de zip kon niet worden geopend)' : e && e.message === 'GEEN_DATA' ? 'geen tab met een herkenbare koprij (status en een bedrag)' : `fout in de tool: ${kortPad(e && e.message || e)}`;
 function toonFout(tekst){
-  openVenster(`<div class="vkop"><h2>Het bestand kon niet worden gelezen</h2><p id="startFout">${esc(tekst)}</p></div><div class="vvoet"><div class="rest"><button class="k vol" data-sluit autofocus>Sluiten</button></div></div>`, 'smal');
+  openVenster(`<div class="vkop"><h2>Het bestand kon niet worden gelezen</h2><p id="startFout">${esc(tekst)}</p></div>
+    <div class="vvoet"><span class="hint" style="margin:0">Klopt dit niet? De foutzoeker laat zien wat de tool vond.</span><div class="rest"><button class="k stil" data-foutzoeker>Foutzoeker</button><button class="k vol" data-sluit autofocus>Sluiten</button></div></div>`, 'smal');
 }
 /* bron: 'bestand' | 'hervat' | 'voorbeeld' | 'tab' */
 function start(wb, voorkeurTab, bron='bestand'){
@@ -3427,25 +4004,46 @@ function bezig(aan, titel='', tekst=''){
 const volgendBeeld = () => new Promise(r => requestAnimationFrame(() => setTimeout(r, 20)));
 async function laadBestand(f){
   if (!f) return;
-  if (!/\.(xlsx|xlsm)$/i.test(f.name) && !/spreadsheetml/.test(f.type)){ toonFout(`${f.name} is geen .xlsx-bestand. Sla het in Excel op als .xlsx en probeer het opnieuw.`); return; }
+  const ext = (f.name.match(/\.[a-z0-9]{2,5}$/i) || ['(geen extensie)'])[0].toLowerCase();
+  if (!/\.(xlsx|xlsm)$/i.test(f.name) && !/spreadsheetml/.test(f.type)){
+    diagLog('let', `bestand geweigerd: ${ext}, geen .xlsx`);
+    toonFout(`${f.name} is geen .xlsx-bestand. Sla het in Excel op als .xlsx en probeer het opnieuw.`); return;
+  }
   const wasStap = S.m ? S.stap : null;
+  DIAG.bestand = {ext, grootte: f.size}; DIAG.duur = {};
+  diagLog('info', `bestand gekozen: ${ext}, ${Math.round(f.size / 1024)} kB`);
   sluitPop(); bezig(true, 'Bestand lezen', f.name); await volgendBeeld();
+  let wb = null;
   try {
     const buf = await f.arrayBuffer();
     bezig(true, 'Regels herkennen', 'Tabbladen, koprij en forecast zoeken'); await volgendBeeld();
-    const wb = leesXlsx(buf, f.name); wb.bestandTijd = f.lastModified || null;
+    let t0 = performance.now();
+    wb = leesXlsx(buf, f.name); wb.bestandTijd = f.lastModified || null;
+    DIAG.duur.lezen = Math.round(performance.now() - t0); DIAG.wb = wb;
+    diagLog('info', `gelezen in ${DIAG.duur.lezen} ms: ${meervoud(wb.tabs.length, 'tabblad', 'tabbladen')}`);
+    t0 = performance.now();
     start(wb, null, 'bestand');
+    DIAG.duur.model = Math.round(performance.now() - t0); DIAG.mislukt = null; DIAG.extra = [];
+    diagLog('info', `herkend in ${DIAG.duur.model} ms: ${meervoud(S.m.regels.length, 'regel', 'regels')} uit "${S.m.tab}"${S.m.forecast ? `, forecast uit "${S.m.hist[S.m.jaar].tab}"` : ', geen forecast'}`);
     S.stap = wasStap && wasStap !== 'data' ? wasStap : 'data';
     render(); scrollTo({top:0});
     if (wasStap && wasStap !== 'data') meld(`${f.name} ingelezen: ${meervoud(S.m.regels.length,'regel','regels')}`);
-  } catch(e){ toonFout(foutTekst(e)); }
+  } catch(e){
+    DIAG.wb = wb; DIAG.mislukt = foutCode(e);
+    if (e && (e.message === 'GEEN_XLSX' || e.message === 'GEEN_DATA')) diagLog('fout', `inlezen mislukt: ${DIAG.mislukt}`);
+    else diagFout(e, 'bestand inlezen');
+    toonFout(foutTekst(e));
+    if (S.stap === 'data') render();
+  }
   finally { bezig(false); }
 }
 function laadVoorbeeld(){
   try {
     start({...JSON.parse(JSON.stringify(VOORBEELD)), tijd: Date.now()}, null, 'voorbeeld');
+    Object.assign(DIAG, {wb:S.wb, bestand:null, mislukt:null, extra:[], duur:{}});
+    diagLog('info', `voorbeelddata geladen: ${meervoud(S.m.regels.length, 'regel', 'regels')}`);
     S.stap = 'data'; render(); scrollTo({top:0});
-  } catch(err){ toonFout(foutTekst(err)); }
+  } catch(err){ diagFout(err, 'voorbeelddata laden'); toonFout(foutTekst(err)); }
 }
 
 /* =====================================================================
@@ -3462,9 +4060,11 @@ function bediening(){
 
   document.addEventListener('click', e => {
     if (e.target.closest('#stKeuzes,#pop .popnoot')) return;           // de rapportstudio heeft zijn eigen bediening
-    const t = e.target.closest('button,a[data-ga],[data-stap-naar],[data-team],[data-o],[data-sort],.vakdrop,tr.klik');
+    const t = e.target.closest('button,a[data-ga],[data-stap-naar],[data-team],[data-o],[data-sort],[data-diag],.vakdrop,tr.klik');
     if (!t || t.disabled) return;
     const d = t.dataset;
+    if (d.diag){ if (d.diag !== 'bedragen') diagKlik(d.diag); return; }
+    if (d.foutzoeker != null){ naarFoutzoeker(); return; }
     if (t.closest('#stappen') && d.stap){ naarStap(d.stap); return; }
     if (d.stapNaar){ if (d.o){ S.open = d.o; S.openAlle = false; } naarStap(d.stapNaar); return; }
     if (d.ankerStap){ naarStap(d.ankerStap, {anker: d.anker}); return; }
@@ -3477,7 +4077,7 @@ function bediening(){
     if (d.pop){ ({team:popTeam, maand:popMaand, tab:popTab})[d.pop](t); return; }
     if (d.team){ const kies = d.team; sluitPop(); S.team = (S.team === kies && t.closest('.staven,.mtabel')) ? 'Alle' : kies; render(); return; }
     if (d.peil){ sluitPop(); if (d.peil === 'af'){ S.peil = 12; S.lopend = false; } else { S.peil = +d.peil; S.lopend = true; } render(); return; }
-    if (d.tabkeuze){ sluitPop(); try { const st = S.stap; start(S.wb, d.tabkeuze, 'tab'); S.stap = st; render(); meld(`Regels uit ${d.tabkeuze}`); } catch(err){ meld('Die tab kon niet worden gelezen'); } return; }
+    if (d.tabkeuze){ sluitPop(); try { const st = S.stap; start(S.wb, d.tabkeuze, 'tab'); S.stap = st; diagLog('info', `andere tab gekozen: "${d.tabkeuze}", ${meervoud(S.m.regels.length, 'regel', 'regels')}`); render(); meld(`Regels uit ${d.tabkeuze}`); } catch(err){ diagFout(err, `tab "${d.tabkeuze}" kiezen`); meld('Die tab kon niet worden gelezen'); } return; }
     if (d.w){ S.weergave = d.w; render(); return; }
     if (d.o){ S.open = d.o; S.openAlle = false; if (S.stap !== 'pijplijn') naarStap('pijplijn'); else render(); return; }
     if (d.s){ S.r.status = d.s; S.r.limiet = 200; render(); return; }
@@ -3497,9 +4097,13 @@ function bediening(){
     if (t.id === 'meerRegels'){ S.r.limiet = 1e9; render(); return; }
   });
   document.addEventListener('mousedown', e => { if (POP && !$('#pop').contains(e.target) && !POP.knop.contains(e.target)) sluitPop(); });
+  document.addEventListener('change', e => {
+    if (e.target.matches('[data-diag="bedragen"]')){ DIAG.bedragen = e.target.checked; diagLog('info', `bedragen in het verslag: ${DIAG.bedragen ? 'aan' : 'uit'}`); tekenFoutzoeker(); }
+  });
   document.addEventListener('keydown', e => {
+    if (e.key === 'Enter' && e.target.id === 'fzInvoer'){ e.preventDefault(); diagOpdracht(e.target.value); return; }
     if (e.key === 'Escape'){ if (POP){ const k = POP.knop; sluitPop(); k.focus(); } else if ($('#vensters').lastElementChild) sluitVenster(); return; }
-    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('#vakdrop,.tegel.klik,.staaf.klik')){ e.preventDefault(); e.target.click(); return; }
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('#vakdrop,.tegel.klik,.staaf.klik,.fzkop')){ e.preventDefault(); e.target.click(); return; }
     if (POP && (e.key === 'ArrowDown' || e.key === 'ArrowUp')){
       const k = $$('#pop .popkeuze'); if (!k.length) return;
       e.preventDefault(); const i = k.indexOf(document.activeElement);
@@ -3536,7 +4140,10 @@ function bediening(){
 
   // vorige keer: meteen terug naar het overzicht
   const b = leesOpslag(SLEUTEL);
-  if (b){ try { start(b, b.tab, 'hervat'); S.stap = 'overzicht'; } catch(e){ /* oud of kapot: gewoon leeg beginnen */ } }
+  if (b){
+    try { start(b, b.tab, 'hervat'); S.stap = 'overzicht'; DIAG.wb = b; diagLog('info', `onthouden bestand hersteld (ingelezen ${datumTijd(b.tijd)}): ${meervoud(S.m.regels.length, 'regel', 'regels')}`); }
+    catch(e){ diagFout(e, 'onthouden bestand herstellen'); /* oud of kapot: gewoon leeg beginnen */ }
+  } else diagLog('info', 'tool geopend zonder onthouden bestand');
   render();
 }
 bediening();
